@@ -1,8 +1,8 @@
 {
-  "name": "Armored-train",
-  "version": "0.4.6",
+  "name": "Armored-train-Modified",
+  "version": "1.0.0",
   "factorio_version": "1.1",
-  "title": "Armored Train (Turret Wagons)",
-  "author": "Pandamiami80s",
-  "description": "Turret Wagons and Armored Train (T.W.A.T.)"
+  "title": "Armored Train (Turret Wagons) Modified",
+  "author": "Nayfall",
+  "description": "Turret Wagons and Armored Train (T.W.A.T.). Forked version of https://mods.factorio.com/mod/Armored-train"
 }
