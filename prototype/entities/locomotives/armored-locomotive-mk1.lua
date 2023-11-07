@@ -1,63 +1,80 @@
-local armoredMk1 = require("config.values.locomotivesValues").armoredMk1
+local locomotiveMk1 = require("config.values.locomotivesValues").armoredMk1
 
 ------------
 --- ITEM ---
 ------------
+
 data:extend
 ({
 	{
 		type = "item",
-		name = armoredMk1.name,
+		name = locomotiveMk1.name,
 		icon = "__Armored-train_Modified__/assets/armored-locomotive-mk1/armored-locomotive-mk1-icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "transport",
 		order = "a[train-system]-l[locomotive_mk1_00]",
-		place_result = armoredMk1.name,
-		stack_size = armoredMk1.stackSize
+		place_result = locomotiveMk1.name,
+		stack_size = locomotiveMk1.stackSize
 	}
 })
 
 --------------
 --- RECIPE ---
 --------------
+
 data:extend
 ({
 	{
 		type = "recipe",
-		name = armoredMk1.name,
+		name = locomotiveMk1.name,
 		enabled = false,
-		ingredients = armoredMk1.recipe.ingredients,
-		result = armoredMk1.name
+		ingredients = locomotiveMk1.recipe.ingredients,
+		result = locomotiveMk1.name
 	}
 })
 
 --------------
 --- ENTITY ---
 --------------
+
 -- Deep copy base data and create new one with custom parametres
 local l_armored_locomotive_mk1 = util.table.deepcopy(data.raw["locomotive"]["locomotive"])
-l_armored_locomotive_mk1.name = armoredMk1.name
+
+-- Name
+l_armored_locomotive_mk1.name = locomotiveMk1.name
+
+-- Icon
 l_armored_locomotive_mk1.icon =
 "__Armored-train_Modified__/assets/armored-locomotive-mk1/armored-locomotive-mk1-icon.png"
 l_armored_locomotive_mk1.icon_size = 64
 l_armored_locomotive_mk1.icon_mipmaps = 4
--- Inventory
+
+-- Mining
 l_armored_locomotive_mk1.minable =
 {
 	mining_time = 0.5,
-	result = armoredMk1.name
+	result = locomotiveMk1.name
 }
+
 -- Hp
-l_armored_locomotive_mk1.max_health = armoredMk1.health;
-l_armored_locomotive_mk1.weight = armoredMk1.weight;
-l_armored_locomotive_mk1.max_power = armoredMk1.maxPower
+l_armored_locomotive_mk1.max_health = locomotiveMk1.health;
+
+-- Weight
+l_armored_locomotive_mk1.weight = locomotiveMk1.weight;
+
+-- Max power
+l_armored_locomotive_mk1.max_power = locomotiveMk1.maxPower
+
+-- Resistances
+l_armored_locomotive_mk1.resistances = locomotiveMk1.resistances
+
 -- Burner
 l_armored_locomotive_mk1.burner =
 {
 	fuel_categories = { "chemical" },
-	effectivity = armoredMk1.burner.effectivity,
-	fuel_inventory_size = armoredMk1.burner.fuelInventorySize,
+	effectivity = locomotiveMk1.burner.effectivity,
+	fuel_inventory_size = locomotiveMk1.burner.fuelInventorySize,
 	smoke =
 	{
 		{
@@ -74,6 +91,7 @@ l_armored_locomotive_mk1.burner =
 		}
 	}
 }
+
 -- Animation
 l_armored_locomotive_mk1.pictures =
 {
@@ -149,7 +167,8 @@ l_armored_locomotive_mk1.pictures =
 		}
 	}
 }
--- minimap representation
+
+-- Minimap representation
 l_armored_locomotive_mk1.minimap_representation =
 {
 	filename =

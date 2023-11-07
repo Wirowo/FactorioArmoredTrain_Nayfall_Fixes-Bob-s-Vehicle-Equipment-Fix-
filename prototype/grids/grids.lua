@@ -5,6 +5,7 @@ local changeGrid = require("utils").changeGrid
 -------------
 --- GRIDS ---
 -------------
+
 -- Upload generated grids
 for _, grid in pairs(grids) do
     data:extend({ grid })

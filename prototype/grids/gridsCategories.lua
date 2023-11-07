@@ -1,6 +1,7 @@
 ------------------
 --- CATEGORIES ---
 ------------------
+
 data:extend({
     {
         type = "equipment-category",

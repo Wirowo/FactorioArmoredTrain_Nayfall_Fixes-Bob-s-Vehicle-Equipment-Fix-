@@ -1,12 +1,8 @@
--- Prototype
-require("prototype.prototypeInitialize")
-
 -- Compatibility
 require("compatibility.compatibilityInitialize")
 
--- minigun
-require("assets.minigun-platform-mk1.minigun-platform-mk1")
-require("assets.minigun-turret-mk1.minigun-turret-mk1")
+-- Prototype
+require("prototype.prototypeInitialize")
 
 -- rocket
 require("assets.rocket-platform-mk1.rocket-platform-mk1")

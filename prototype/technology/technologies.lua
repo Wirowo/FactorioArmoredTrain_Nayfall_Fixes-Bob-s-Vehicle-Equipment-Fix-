@@ -14,7 +14,7 @@ data:extend
 			},
 			{
 				type = "unlock-recipe",
-				recipe = "minigun-platform-mk1"
+				recipe = "minigun-wagon-mk1"
 			},
 			{
 				type = "unlock-recipe",
