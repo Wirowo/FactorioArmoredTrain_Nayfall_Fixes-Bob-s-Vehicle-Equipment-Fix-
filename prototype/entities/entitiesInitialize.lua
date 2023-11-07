@@ -1,0 +1,2 @@
+-- Locomotives
+require("locomotives.locomotivesInitialize")

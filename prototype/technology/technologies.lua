@@ -3,7 +3,7 @@ data:extend
 	{
 		type = "technology",
 		name = "armored-train-turret-wagons",
-		icon = "__Armored-train__/prototype/technology/armored-train-technology-icon.png",
+		icon = "__Armored-train_Modified__/prototype/technology/armored-train-technology-icon.png",
 		icon_size = 128,
 		effects =
 		{
@@ -33,14 +33,14 @@ data:extend
 				recipe = "radar-platform-mk1"
 			}
 		},
-		prerequisites = {"gun-turret", "military", "railway"},
+		prerequisites = { "gun-turret", "military", "railway" },
 		unit =
 		{
 			count = 100,
 			ingredients =
 			{
-				{"automation-science-pack", 1},
-				{"logistic-science-pack", 1}
+				{ "automation-science-pack", 1 },
+				{ "logistic-science-pack",   1 }
 			},
 			time = 20
 		},

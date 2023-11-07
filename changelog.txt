@@ -2,6 +2,8 @@
 Version: 1.0.0
 Info:
 	- Forked project
+	- Added grid to locomotive
+	- Added krastorio 2 compatibility (grid equipment and fuel)
 
 ---------------------------------------------------------------------------------------------------
 Version: 0.4.6
