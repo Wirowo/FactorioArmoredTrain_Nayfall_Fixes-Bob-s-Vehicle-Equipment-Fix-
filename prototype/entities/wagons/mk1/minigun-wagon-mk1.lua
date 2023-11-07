@@ -39,35 +39,35 @@ data:extend
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_minigun_platform_mk1 = util.table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+local l_minigun_wagon_mk1 = util.table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
 
 -- Name
-l_minigun_platform_mk1.name = minigunWagonMk1.name
+l_minigun_wagon_mk1.name = minigunWagonMk1.name
 
 -- Icon
-l_minigun_platform_mk1.icon = "__Armored-train_Modified__/assets/minigun-platform-mk1/minigun-platform-mk1-icon.png"
-l_minigun_platform_mk1.icon_size = 64
-l_minigun_platform_mk1.icon_mipmaps = 4
+l_minigun_wagon_mk1.icon = "__Armored-train_Modified__/assets/minigun-platform-mk1/minigun-platform-mk1-icon.png"
+l_minigun_wagon_mk1.icon_size = 64
+l_minigun_wagon_mk1.icon_mipmaps = 4
 
 -- Inventory
-l_minigun_platform_mk1.inventory_size = 0 -- Do not need inventory
+l_minigun_wagon_mk1.inventory_size = 0 -- Do not need inventory
 
 -- Mining
-l_minigun_platform_mk1.minable =
+l_minigun_wagon_mk1.minable =
 {
 	mining_time = 0.5,
 	result = minigunWagonMk1.name
 }
 
 -- Hp
-l_minigun_platform_mk1.max_health = minigunWagonMk1
+l_minigun_wagon_mk1.max_health = minigunWagonMk1
 	.health -- Same as turret hp (Critical component or will be destroyed using old script)	
 
 -- Weight
-l_minigun_platform_mk1.weight = minigunWagonMk1.weight
+l_minigun_wagon_mk1.weight = minigunWagonMk1.weight
 
 -- Animation
-l_minigun_platform_mk1.pictures =
+l_minigun_wagon_mk1.pictures =
 {
 	layers =
 	{
@@ -91,18 +91,18 @@ l_minigun_platform_mk1.pictures =
 		}
 	}
 }
-l_minigun_platform_mk1.horizontal_doors = nil
-l_minigun_platform_mk1.vertical_doors = nil
+l_minigun_wagon_mk1.horizontal_doors = nil
+l_minigun_wagon_mk1.vertical_doors = nil
 
 -- Minimap representation
-l_minigun_platform_mk1.minimap_representation =
+l_minigun_wagon_mk1.minimap_representation =
 {
 	filename = "__Armored-train_Modified__/assets/minigun-platform-mk1/minigun-platform-mk1-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
-l_minigun_platform_mk1.selected_minimap_representation =
+l_minigun_wagon_mk1.selected_minimap_representation =
 {
 	filename =
 	"__Armored-train_Modified__/assets/minigun-platform-mk1/minigun-platform-mk1-selected-minimap-representation.png",
@@ -114,5 +114,5 @@ l_minigun_platform_mk1.selected_minimap_representation =
 -- Write result
 data:extend
 ({
-	l_minigun_platform_mk1
+	l_minigun_wagon_mk1
 })

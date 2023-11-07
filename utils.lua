@@ -11,9 +11,9 @@ utils.tableContains = function(table, element)
 end
 
 -- Function to add a new fuel category
-utils.addFuelCategory = function(entityType, entityName, newCategories)
+utils.addFuelCategory = function(entityType, entityName, finalLocation, newCategories)
     if data.raw[entityType][entityName] then
-        local actualCategoriesTable = data.raw[entityType][entityName].burner.fuel_categories
+        local actualCategoriesTable = data.raw[entityType][entityName][finalLocation].fuel_categories
         local newCategoriesTable = {}
 
         -- Make a copy of actual categories on a new table
@@ -34,7 +34,7 @@ utils.addFuelCategory = function(entityType, entityName, newCategories)
             end
         end
 
-        data.raw[entityType][entityName].burner.fuel_categories = newCategoriesTable
+        data.raw[entityType][entityName][finalLocation].fuel_categories = newCategoriesTable
     end
 end
 

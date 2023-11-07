@@ -5,6 +5,10 @@
 data:extend({
     {
         type = "equipment-category",
+        name = "attack-equipment"
+    },
+    {
+        type = "equipment-category",
         name = "defense-equipment"
     },
     {
@@ -15,9 +19,10 @@ data:extend({
 
 
 -- Added extra category to vanilla equipment
+-- Attack
+table.insert(data.raw["active-defense-equipment"]["discharge-defense-equipment"].categories, "attack-equipment")
+table.insert(data.raw["active-defense-equipment"]["personal-laser-defense-equipment"].categories, "attack-equipment")
 -- Defense
-table.insert(data.raw["active-defense-equipment"]["discharge-defense-equipment"].categories, "defense-equipment")
-table.insert(data.raw["active-defense-equipment"]["personal-laser-defense-equipment"].categories, "defense-equipment")
 table.insert(data.raw["energy-shield-equipment"]["energy-shield-equipment"].categories, "defense-equipment")
 table.insert(data.raw["energy-shield-equipment"]["energy-shield-mk2-equipment"].categories, "defense-equipment")
 -- Energy

@@ -1,14 +1,12 @@
 local tableContains = require("utils").tableContains
+local combatWagons = require("config.values.combatWagonsValues")
 
-local validEntities = {
-	"minigun-wagon-mk1",
-	"rocket-platform-mk1",
-	"cannon-wagon-mk1",
-	"flamethrower-wagon-mk1",
-	"radar-platform-mk1"
-}
+local validEntities = {}
 
-local platformMaxHealth = 1000
+-- Add wagons to valid entities
+for _, wagon in pairs(combatWagons) do
+	table.insert(validEntities, wagon.name)
+end
 
 --------------------------
 --FUNCTIONS---------------
@@ -84,7 +82,7 @@ local function onTickMain(event)
 
 				-- Apply damage taken to the wagon
 				if event.tick % 20 == 3 then
-					local damageTaken = platformMaxHealth - proxy.health
+					local damageTaken = WagonsMk1Health - proxy.health
 
 					if damageTaken > 0 then
 						local platformCurrentHealth = entity.health
@@ -94,7 +92,7 @@ local function onTickMain(event)
 							entity.die()
 						else
 							entity.health = platformCurrentHealth - damageTaken
-							proxy.health = platformMaxHealth
+							proxy.health = WagonsMk1Health
 						end
 					end
 				end

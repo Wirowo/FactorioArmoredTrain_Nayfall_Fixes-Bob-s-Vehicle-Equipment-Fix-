@@ -1,12 +1,16 @@
 local turrets = require("config.values.turretsValues")
 local combatWagons = {}
 
+-- Wagons auto generates for each turret
+
+WagonsMk1Health = 1200
+
 -- Wagon Mk1
 for key, turret in pairs(turrets) do
     combatWagons[key] = {
         name = turret.name:gsub("-turret%-", "-wagon-"),
         -- x2 Compared to vanilla
-        health = 1200,
+        health = WagonsMk1Health,
         -- x2 Compared to vanilla
         weight = 2000,
         stackSize = 5,

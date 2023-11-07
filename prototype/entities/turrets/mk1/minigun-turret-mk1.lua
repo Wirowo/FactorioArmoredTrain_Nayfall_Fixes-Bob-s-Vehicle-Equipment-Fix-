@@ -37,6 +37,10 @@ l_minigun_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
 l_minigun_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
 l_minigun_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
 
+-- Rotation speed
+local l_base_tank_copy_param = util.table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
+l_minigun_turret_mk1.rotation_speed = l_base_tank_copy_param
+
 -- Inventory
 l_minigun_turret_mk1.inventory_size = minigunTurretMk1.inventorySize
 
@@ -112,8 +116,6 @@ l_minigun_turret_mk1.folded_animation =
 	layers =
 	{
 		minigun_turret_extension { frame_count = 1, line_length = 1 },
-		--gun_turret_extension_mask{frame_count=1, line_length = 1},
-		--gun_turret_extension_shadow{frame_count=1, line_length = 1}
 	}
 }
 l_minigun_turret_mk1.preparing_animation =
@@ -121,8 +123,6 @@ l_minigun_turret_mk1.preparing_animation =
 	layers =
 	{
 		minigun_turret_extension {},
-		--gun_turret_extension_mask{},
-		--gun_turret_extension_shadow{}
 	}
 }
 l_minigun_turret_mk1.prepared_animation = minigun_turret_attack { frame_count = 1 }
@@ -132,8 +132,6 @@ l_minigun_turret_mk1.folding_animation =
 	layers =
 	{
 		minigun_turret_extension { run_mode = "backward" },
-		--gun_turret_extension_mask{run_mode = "backward"},
-		--gun_turret_extension_shadow{run_mode = "backward"}
 	}
 }
 
@@ -143,7 +141,7 @@ local blank_layers =
 	layers =
 	{
 		{
-			filename = "__Armored-train_Modified__/assets/minigun-turret-mk1/fakeTransparent.png",
+			filename = "__Armored-train_Modified__/assets/utils/fakeTransparent.png",
 			direction_count = 1,
 			height = 16,
 			width = 16
