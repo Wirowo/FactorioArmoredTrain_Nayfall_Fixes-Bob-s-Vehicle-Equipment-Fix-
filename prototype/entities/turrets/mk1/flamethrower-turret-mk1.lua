@@ -1,5 +1,5 @@
-local flamethrowerTurretMk1 = require("config.values.turretsValues").flamethrowerMk1
-local flamethrowerWagonMk1 = require("config.values.combatWagonsValues").flamethrowerMk1
+local flamethrowerTurretMk1 = ArmoredTrain.mk1.turrets.flamethrowerMk1
+local flamethrowerWagonMk1 = ArmoredTrain.mk1.wagons.flamethrowerMk1
 
 --------------
 --- ENTITY ---
@@ -52,7 +52,7 @@ l_flamethrower_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function flamethrower_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Modified__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-raising.png",
+		filename = "__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-raising.png",
 		priority = "medium",
 		width = 152,
 		height = 128,
@@ -84,25 +84,25 @@ local function flamethrower_turret_attack(inputs)
 				{
 					{
 						filename =
-						"__Armored-train_Modified__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-1.png",
+						"__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-1.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-2.png",
+						"__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-2.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-3.png",
+						"__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-3.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-4.png",
+						"__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-shooting-4.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					}
@@ -144,7 +144,7 @@ local blank_layers =
 	layers =
 	{
 		{
-			filename = "__Armored-train_Modified__/assets/utils/fakeTransparent.png",
+			filename = "__Armored-train_Nayfall_Fixes__/assets/utils/fakeTransparent.png",
 			direction_count = 1,
 			height = 16,
 			width = 16

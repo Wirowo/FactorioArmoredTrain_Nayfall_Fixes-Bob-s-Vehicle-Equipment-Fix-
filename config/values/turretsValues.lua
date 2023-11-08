@@ -1,7 +1,6 @@
-local turrets = {}
-
-turrets.cannonMk1 = {
+ArmoredTrain.mk1.turrets.cannonMk1 = {
     name = "cannon-turret-mk1",
+    utility = false,
     damageModifier = 1.5,
     range = 40,
     minRange = 10,
@@ -18,8 +17,9 @@ turrets.cannonMk1 = {
     }
 }
 
-turrets.flamethrowerMk1 = {
+ArmoredTrain.mk1.turrets.flamethrowerMk1 = {
     name = "flamethrower-turret-mk1",
+    utility = false,
     damageModifier = 1.5,
     range = 30,
     minRange = 6,
@@ -36,8 +36,9 @@ turrets.flamethrowerMk1 = {
     }
 }
 
-turrets.minigunMk1 = {
+ArmoredTrain.mk1.turrets.minigunMk1 = {
     name = "minigun-turret-mk1",
+    utility = false,
     damageModifier = 1.5,
     range = 35,
     inventorySize = 3,
@@ -53,8 +54,9 @@ turrets.minigunMk1 = {
     }
 }
 
-turrets.radarMk1 = {
+ArmoredTrain.mk1.turrets.radarMk1 = {
     name = "radar-turret-mk1",
+    utility = true,
     energyUsage = "100kW",
     energyPerSector = "3.5MJ",
     maxDistanceOfSector = 2,
@@ -76,8 +78,9 @@ turrets.radarMk1 = {
     }
 }
 
-turrets.rocketMk1 = {
+ArmoredTrain.mk1.turrets.rocketMk1 = {
     name = "rocket-turret-mk1",
+    utility = false,
     damageModifier = 1.5,
     range = 50,
     minRange = 20,
@@ -94,4 +97,7 @@ turrets.rocketMk1 = {
     }
 }
 
-return turrets
+-- Adds all mk1 turrets to total turrets
+for _, turretMk1 in pairs(ArmoredTrain.mk1.turrets) do
+    table.insert(ArmoredTrain.total.turrets, turretMk1)
+end

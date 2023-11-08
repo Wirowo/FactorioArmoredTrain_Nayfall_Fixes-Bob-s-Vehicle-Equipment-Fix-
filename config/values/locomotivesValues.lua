@@ -1,8 +1,5 @@
-local armoredLocomotives = {}
-
-
 -- Locomotive Mk1
-armoredLocomotives.armoredMk1 = {
+ArmoredTrain.mk1.locomotives.armoredLocomotiveMk1 = {
     name = "armored-locomotive-mk1",
     -- x2 Compared to vanilla
     health = 2000,
@@ -56,4 +53,7 @@ armoredLocomotives.armoredMk1 = {
     }
 }
 
-return armoredLocomotives
+-- Adds all mk1 locomotives to total locomotives
+for _, locomotiveMk1 in pairs(ArmoredTrain.mk1.locomotives) do
+    table.insert(ArmoredTrain.total.locomotives, locomotiveMk1)
+end

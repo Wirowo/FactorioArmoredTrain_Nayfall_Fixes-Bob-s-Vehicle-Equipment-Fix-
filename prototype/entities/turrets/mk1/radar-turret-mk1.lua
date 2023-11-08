@@ -1,5 +1,5 @@
-local radarTurretMk1 = require("config.values.turretsValues").radarMk1
-local radarWagonMk1 = require("config.values.combatWagonsValues").radarMk1
+local radarTurretMk1 = ArmoredTrain.mk1.turrets.radarMk1
+local radarWagonMk1 = ArmoredTrain.mk1.wagons.radarMk1
 
 --------------
 --- ENTITY ---
@@ -69,7 +69,7 @@ local blank_layers =
 	layers =
 	{
 		{
-			filename = "__Armored-train_Modified__/assets/utils/fakeTransparent.png",
+			filename = "__Armored-train_Nayfall_Fixes__/assets/utils/fakeTransparent.png",
 			direction_count = 1,
 			height = 16,
 			width = 16

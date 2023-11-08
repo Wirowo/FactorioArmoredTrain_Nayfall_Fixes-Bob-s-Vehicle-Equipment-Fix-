@@ -1,16 +1,15 @@
-local turrets = require("config.values.turretsValues")
-local combatWagons = {}
-
 -- Wagons auto generates for each turret
 
-WagonsMk1Health = 1200
+-- Hp for mk1 wagons(Probably temporal)
+ArmoredTrain.bases.mk1.wagons.health = 1200
 
 -- Wagon Mk1
-for key, turret in pairs(turrets) do
-    combatWagons[key] = {
+for key, turret in pairs(ArmoredTrain.mk1.turrets) do
+    ArmoredTrain.mk1.wagons[key] = {
         name = turret.name:gsub("-turret%-", "-wagon-"),
+        utility = turret.utility,
         -- x2 Compared to vanilla
-        health = WagonsMk1Health,
+        health = ArmoredTrain.bases.mk1.wagons.health,
         -- x2 Compared to vanilla
         weight = 2000,
         stackSize = 5,
@@ -46,4 +45,7 @@ for key, turret in pairs(turrets) do
     }
 end
 
-return combatWagons
+-- Adds all mk1 wagons to total wagons
+for _, wagonMk1 in pairs(ArmoredTrain.mk1.wagons) do
+    table.insert(ArmoredTrain.total.wagons, wagonMk1)
+end

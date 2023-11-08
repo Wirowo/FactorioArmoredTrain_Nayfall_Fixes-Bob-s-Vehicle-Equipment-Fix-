@@ -1,9 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Info:
+	- More code refactor for easy changes
+	
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Info:
 	- Forked project
 	- Added grid to locomotive and wagons
-	- Added krastorio 2 compatibility (grid equipment and fuel)
+	- Added krastorio2 compatibility (grid equipment and fuel)
 	- Refactored almost all code, so it is easy to modify stats or add more entities
 	- Added minigun turret to physical attack damage bonus, same as base gun turret (dont know if works)
 	- More range and damage modifier to turrets

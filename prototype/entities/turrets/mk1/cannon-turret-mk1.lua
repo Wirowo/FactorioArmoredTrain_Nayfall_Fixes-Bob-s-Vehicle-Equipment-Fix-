@@ -1,5 +1,5 @@
-local cannonTurretMk1 = require("config.values.turretsValues").cannonMk1
-local cannonWagonMk1 = require("config.values.combatWagonsValues").cannonMk1
+local cannonTurretMk1 = ArmoredTrain.mk1.turrets.cannonMk1
+local cannonWagonMk1 = ArmoredTrain.mk1.wagons.cannonMk1
 
 --------------
 --- ENTITY ---
@@ -52,7 +52,7 @@ l_cannon_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function cannon_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Modified__/assets/cannon-turret-mk1/sprites/cannon-turret-raising.png",
+		filename = "__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-raising.png",
 		priority = "medium",
 		width = 179,
 		height = 132,
@@ -84,25 +84,25 @@ local function cannon_turret_attack(inputs)
 				{
 					{
 						filename =
-						"__Armored-train_Modified__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-1.png",
+						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-1.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-2.png",
+						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-2.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-3.png",
+						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-3.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Modified__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-4.png",
+						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-4.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					}
@@ -144,7 +144,7 @@ local blank_layers =
 	layers =
 	{
 		{
-			filename = "__Armored-train_Modified__/assets/utils/fakeTransparent.png",
+			filename = "__Armored-train_Nayfall_Fixes__/assets/utils/fakeTransparent.png",
 			direction_count = 1,
 			height = 16,
 			width = 16

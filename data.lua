@@ -1,3 +1,9 @@
+-- Utils
+require("utils")
+
+-- Config
+require("config.configInitialize")
+
 -- Prototype
 require("prototype.prototypeInitialize")
 

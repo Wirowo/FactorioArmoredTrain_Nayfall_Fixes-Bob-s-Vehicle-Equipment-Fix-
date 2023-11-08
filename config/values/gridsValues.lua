@@ -1,11 +1,8 @@
-local grids = {}
-local locomotives = require("config.values.locomotivesValues")
-
 -- Here the grids are created, then uploaded on prototype/grids
 
--- For each locomotive generates an equipment grid item
-for key, locomotive in pairs(locomotives) do
-    grids[key] = {
+-- For each locomotive generates the expected grid
+for key, locomotive in pairs(ArmoredTrain.total.locomotives) do
+    ArmoredTrain.grids[key] = {
         type = "equipment-grid",
         name = locomotive.name .. "-grid",
         width = locomotive.grid.width,
@@ -14,22 +11,24 @@ for key, locomotive in pairs(locomotives) do
     }
 end
 
+-- Add grids base name to easy access
+ArmoredTrain.bases.grids.turretWagon = "turretWagonMk"
+ArmoredTrain.bases.grids.utilityWagon = "utilityWagonMk"
+
 -- Wagon mk1
-grids.wagonMk1 = {
+ArmoredTrain.grids.turretWagonMk1 = {
     type = "equipment-grid",
-    name = "armoredWagonMk1-grid",
+    name = ArmoredTrain.bases.grids.turretWagon .. "1" .. "-grid",
     width = 4,
     height = 4,
     equipment_categories = { "defense-equipment", "energy-equipment" }
 }
 
--- Radar mk1
-grids.radarMk1 = {
+-- Utility mk1
+ArmoredTrain.grids.utilityWagonMk1 = {
     type = "equipment-grid",
-    name = "armoredRadarMk1-grid",
+    name = ArmoredTrain.bases.grids.utilityWagon .. "1" .. "-grid",
     width = 4,
     height = 4,
     equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
 }
-
-return grids

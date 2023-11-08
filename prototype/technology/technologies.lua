@@ -1,23 +1,29 @@
-local locomotives = require("config.values.locomotivesValues")
-local turrets = require("config.values.turretsValues")
-local wagons = require("config.values.combatWagonsValues")
+--------------------
+--- TECHNOLOGIES ---
+--------------------
 
-local techEffect = {}
+-- Mk1 Tech
 
--- Adds locomotives
-for _, locomotive in pairs(locomotives) do
-	table.insert(techEffect, {
-		type = "unlock-recipe",
-		recipe = locomotive.name
-	})
+local techEffectMk1 = {}
+
+-- Adds mk1 locomotives
+for _, locomotive in pairs(ArmoredTrain.mk1.locomotives) do
+	if locomotive.name then
+		table.insert(techEffectMk1, {
+			type = "unlock-recipe",
+			recipe = locomotive.name
+		})
+	end
 end
 
--- Adds wagons
-for _, wagon in pairs(wagons) do
-	table.insert(techEffect, {
-		type = "unlock-recipe",
-		recipe = wagon.name
-	})
+-- Adds mk1 wagons
+for _, wagon in pairs(ArmoredTrain.mk1.wagons) do
+	if wagon.name then
+		table.insert(techEffectMk1, {
+			type = "unlock-recipe",
+			recipe = wagon.name
+		})
+	end
 end
 
 data:extend
@@ -25,10 +31,10 @@ data:extend
 	{
 		type = "technology",
 		name = "armored-train-turret-wagons",
-		icon = "__Armored-train_Modified__/prototype/technology/armored-train-technology-icon.png",
+		icon = "__Armored-train_Nayfall_Fixes__/prototype/technology/armored-train-technology-icon.png",
 		icon_size = 128,
 		-- Unlock recipes when technology researched
-		effects = techEffect,
+		effects = techEffectMk1,
 		prerequisites = { "gun-turret", "military", "railway" },
 		unit =
 		{
@@ -52,7 +58,7 @@ for _, tech in pairs(baseTech) do
 	-- Check if technology is a physical projectile buff
 	if tech.name and string.find(tech.name, "physical%-projectile") then
 		-- Iterate over all mod turrets
-		for _, turret in pairs(turrets) do
+		for _, turret in pairs(ArmoredTrain.total.turrets) do
 			-- Check if turret is a minigun
 			if turret.name and string.find(turret.name, "minigun") then
 				-- Insert turret on technology

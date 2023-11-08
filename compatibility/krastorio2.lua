@@ -1,35 +1,40 @@
 if mods["Krastorio2"] then
-    local addFuelCategory = require("utils").addFuelCategory
-    local addEquipmentCategory = require("utils").addEquipmentCategory
-
-    local locomotives = require("config.values.locomotivesValues")
-    local turrets = require("config.values.turretsValues")
-    local grids = require("config.values.gridsValues")
-
-    -- For each locomotive adds krastorio2 categories
-    for key, locomotive in pairs(locomotives) do
-        addFuelCategory("locomotive", locomotive.name, "burner", "vehicle-fuel")
-        addEquipmentCategory(grids, key, { "universal-equipment", "vehicle-equipment", "vehicle-motor" })
+    -- Adds krastorio2 fuel categories to all locomotives
+    for _, locomotive in pairs(ArmoredTrain.total.locomotives) do
+        if locomotive.name then
+            Utils.addFuelCategory("locomotive", locomotive.name, "burner", "vehicle-fuel")
+        end
     end
 
-    -- Adds karastorio2 equipment categories to Mk1 wagons
-    addEquipmentCategory(grids, "wagonMk1", {
-        "universal-equipment",
-        "vehicle-equipment",
-    })
-
-    -- Adds karastorio2 equipment categories to Mk1 radar
-    addEquipmentCategory(grids, "radarMk1", {
-        "universal-equipment",
-        "vehicle-equipment",
-        "robot-interaction-equipment",
-        "vehicle-robot-interaction-equipment",
-    })
-
     -- Adds krastorio2 fuel category to radar turrets
-    for _, turret in pairs(turrets) do
+    for _, turret in pairs(ArmoredTrain.total.turrets) do
         if turret.name and string.find(turret.name, "radar") then
-            addFuelCategory("radar", turret.name, "energy_source", "vehicle-fuel")
+            Utils.addFuelCategory("radar", turret.name, "energy_source", "vehicle-fuel")
+        end
+    end
+
+    -- Adds krastorio2 categories to all grids
+    for _, grid in pairs(ArmoredTrain.grids) do
+        if grid.name then
+            -- Is locomotive?
+            if string.find(grid.name, "locomotive") then
+                Utils.addEquipmentCategory(grid.name,
+                    { "universal-equipment", "vehicle-equipment", "vehicle-motor" })
+                -- Is turret?
+            elseif string.find(grid.name, "turret") then
+                Utils.addEquipmentCategory(grid.name, {
+                    "universal-equipment",
+                    "vehicle-equipment",
+                })
+                -- Else(Is utility)
+            else
+                Utils.addEquipmentCategory(grid.name, {
+                    "universal-equipment",
+                    "vehicle-equipment",
+                    "robot-interaction-equipment",
+                    "vehicle-robot-interaction-equipment",
+                })
+            end
         end
     end
 end

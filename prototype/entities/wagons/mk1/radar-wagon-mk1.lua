@@ -1,4 +1,4 @@
-local radarWagonMk1 = require("config.values.combatWagonsValues").radarMk1
+local radarWagonMk1 = ArmoredTrain.mk1.wagons.radarMk1
 
 ------------
 --- ITEM ---
@@ -9,7 +9,7 @@ data:extend
 	{
 		type = "item",
 		name = radarWagonMk1.name,
-		icon = "__Armored-train_Modified__/assets/radar-platform-mk1/radar-platform-mk1-icon.png",
+		icon = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "transport",
@@ -45,7 +45,7 @@ local l_radar_wagon_mk1 = util.table.deepcopy(data.raw["cargo-wagon"]["cargo-wag
 l_radar_wagon_mk1.name = radarWagonMk1.name
 
 -- Icon
-l_radar_wagon_mk1.icon = "__Armored-train_Modified__/assets/radar-platform-mk1/radar-platform-mk1-icon.png"
+l_radar_wagon_mk1.icon = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-icon.png"
 l_radar_wagon_mk1.icon_size = 64
 l_radar_wagon_mk1.icon_mipmaps = 4
 
@@ -83,10 +83,10 @@ l_radar_wagon_mk1.pictures =
 			shift = { 0.4, -1.25 },
 			filenames =
 			{
-				"__Armored-train_Modified__/assets/radar-platform-mk1/sprites/platform-mk1-01.png",
-				"__Armored-train_Modified__/assets/radar-platform-mk1/sprites/platform-mk1-02.png",
-				"__Armored-train_Modified__/assets/radar-platform-mk1/sprites/platform-mk1-03.png",
-				"__Armored-train_Modified__/assets/radar-platform-mk1/sprites/platform-mk1-04.png"
+				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-01.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-02.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-03.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-04.png"
 			}
 		},
 		--DECORATIVES
@@ -104,10 +104,10 @@ l_radar_wagon_mk1.pictures =
 			scale = 0.675,
 			filenames =
 			{
-				"__Armored-train_Modified__/assets/radar-mk1/sprites/radar-mk1-01-fix.png",
-				"__Armored-train_Modified__/assets/radar-mk1/sprites/radar-mk1-02-fix.png",
-				"__Armored-train_Modified__/assets/radar-mk1/sprites/radar-mk1-03-fix.png",
-				"__Armored-train_Modified__/assets/radar-mk1/sprites/radar-mk1-04-fix.png"
+				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-01-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-02-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-03-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-04-fix.png"
 			}
 		}
 	}
@@ -118,7 +118,7 @@ l_radar_wagon_mk1.vertical_doors = nil
 -- Minimap representation
 l_radar_wagon_mk1.minimap_representation =
 {
-	filename = "__Armored-train_Modified__/assets/radar-platform-mk1/radar-platform-mk1-minimap-representation.png",
+	filename = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
@@ -126,7 +126,7 @@ l_radar_wagon_mk1.minimap_representation =
 l_radar_wagon_mk1.selected_minimap_representation =
 {
 	filename =
-	"__Armored-train_Modified__/assets/radar-platform-mk1/radar-platform-mk1-selected-minimap-representation.png",
+	"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-selected-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5

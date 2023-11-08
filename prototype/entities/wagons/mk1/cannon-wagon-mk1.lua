@@ -1,4 +1,4 @@
-local cannonWagonMk1 = require("config.values.combatWagonsValues").cannonMk1
+local cannonWagonMk1 = ArmoredTrain.mk1.wagons.cannonMk1
 
 ------------
 --- ITEM ---
@@ -9,7 +9,7 @@ data:extend
 	{
 		type = "item",
 		name = cannonWagonMk1.name,
-		icon = "__Armored-train_Modified__/assets/cannon-wagon-mk1/cannon-wagon-mk1-icon.png",
+		icon = "__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "transport",
@@ -45,7 +45,7 @@ local l_cannon_wagon_mk1 = util.table.deepcopy(data.raw["cargo-wagon"]["cargo-wa
 l_cannon_wagon_mk1.name = cannonWagonMk1.name
 
 -- Icon
-l_cannon_wagon_mk1.icon = "__Armored-train_Modified__/assets/cannon-wagon-mk1/cannon-wagon-mk1-icon.png"
+l_cannon_wagon_mk1.icon = "__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-icon.png"
 l_cannon_wagon_mk1.icon_size = 64
 l_cannon_wagon_mk1.icon_mipmaps = 4
 
@@ -83,10 +83,10 @@ l_cannon_wagon_mk1.pictures =
 			shift = { 0.4, -1.25 },
 			filenames =
 			{
-				"__Armored-train_Modified__/assets/cannon-wagon-mk1/sprites/wagon-mk1-01.png",
-				"__Armored-train_Modified__/assets/cannon-wagon-mk1/sprites/wagon-mk1-02.png",
-				"__Armored-train_Modified__/assets/cannon-wagon-mk1/sprites/wagon-mk1-03.png",
-				"__Armored-train_Modified__/assets/cannon-wagon-mk1/sprites/wagon-mk1-04.png"
+				"__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/sprites/wagon-mk1-01.png",
+				"__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/sprites/wagon-mk1-02.png",
+				"__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/sprites/wagon-mk1-03.png",
+				"__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/sprites/wagon-mk1-04.png"
 			}
 		}
 	}
@@ -97,14 +97,14 @@ l_cannon_wagon_mk1.vertical_doors = nil
 -- Minimap representation
 l_cannon_wagon_mk1.minimap_representation =
 {
-	filename = "__Armored-train_Modified__/assets/cannon-wagon-mk1/cannon-wagon-mk1-minimap-representation.png",
+	filename = "__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
 l_cannon_wagon_mk1.selected_minimap_representation =
 {
-	filename = "__Armored-train_Modified__/assets/cannon-wagon-mk1/cannon-wagon-mk1-selected-minimap-representation.png",
+	filename = "__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-selected-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
