@@ -14,9 +14,6 @@ ArmoredTrain = {
     grids = {},
     -- Place to store some data
     bases = {
-        mk1 = {
-            wagons = {}
-        },
         grids = {}
     }
 }

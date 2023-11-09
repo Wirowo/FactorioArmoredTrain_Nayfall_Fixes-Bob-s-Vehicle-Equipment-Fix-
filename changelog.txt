@@ -6,6 +6,9 @@ Info:
 	- Added 5 inventory slots to turret wagons
 	- Turrets now recharge ammo from wagon
 	- More rate of fire to rocket and cannon turrets
+	- Removed damage modifier from turrets (You can still add it on config values, I'll see if i can add a config in game)
+	- Fixed minigun turret added to physical projectile damage buff technology
+	- Added spanish localisation
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0

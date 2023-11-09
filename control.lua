@@ -216,6 +216,8 @@ local function entityDamaged(event)
 						end
 					end
 				end
+				-- Once turret is find breaks loop
+				break
 			end
 		end
 	end

@@ -30,7 +30,7 @@ data:extend
 ({
 	{
 		type = "technology",
-		name = "armored-train-turret-wagons",
+		name = "armored-train-turret-wagons-MK1",
 		icon = "__Armored-train_Nayfall_Fixes__/prototype/technology/armored-train-technology-icon.png",
 		icon_size = 128,
 		-- Unlock recipes when technology researched
