@@ -153,71 +153,74 @@ script.on_event(defines.events.on_tick, onTickMain)
 
 -- --ON DAMAGED \/--
 local function entityDamaged(event)
-	if global.turretWagonList then
-		-- Get entity name and unit number
-		local entityNameId = event.entity.name .. event.entity.unit_number
+	-- Verify if entity have name and unit number (When a rock or a tree is hit causes crashes)
+	if event.entity.name and event.entity.unit_number then
+		if global.turretWagonList then
+			-- Get entity name and unit number
+			local entityNameId = event.entity.name .. event.entity.unit_number
 
-		for _, turretWagon in pairs(global.turretWagonList) do
-			-- Get turret name and unit number
-			local turretNameId = turretWagon.proxy.name .. turretWagon.proxy.unit_number
+			for _, turretWagon in pairs(global.turretWagonList) do
+				-- Get turret name and unit number
+				local turretNameId = turretWagon.proxy.name .. turretWagon.proxy.unit_number
 
-			-- The turret is the entity?
-			if turretNameId == entityNameId then
-				local wagonEntity = turretWagon.wagon
-				local turretEntity = turretWagon.proxy
-				local damageTaken = event.final_damage_amount
-				local vtkHealth
+				-- The turret is the entity?
+				if turretNameId == entityNameId then
+					local wagonEntity = turretWagon.wagon
+					local turretEntity = turretWagon.proxy
+					local damageTaken = event.final_damage_amount
+					local vtkHealth
 
-				local equipmentCategories = wagonEntity.grid.prototype.equipment_categories
+					local equipmentCategories = wagonEntity.grid.prototype.equipment_categories
 
-				-- Checks if grid have vtk category
-				local hasVtkArmorPlating = false
-				for _, category in pairs(equipmentCategories) do
-					if category == "vtk-armor-plating" then
-						hasVtkArmorPlating = true
-						break
-					end
-				end
-
-				-- Checks if grid have vtk category and vtk health is avaible
-				if hasVtkArmorPlating and global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth then
-					vtkHealth = global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth
-					-- Otherwise clears vtk health
-				else
-					global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth = nil
-				end
-
-				if damageTaken > 0 then
-					local wagonCurrentHealth = wagonEntity.health
-
-					if vtkHealth then
-						local maxHealth = wagonEntity.prototype.max_health
-						local diff = maxHealth / vtkHealth
-
-						-- Reduce the dmg in relation to max health and vtk health
-						local reducedDamage = damageTaken * diff
-
-						if wagonCurrentHealth <= reducedDamage then
-							turretEntity.destroy()
-							wagonEntity.die()
-						else
-							-- Set new health - reduced damage
-							wagonEntity.health = wagonCurrentHealth - reducedDamage
-							turretEntity.health = vtkHealth
+					-- Checks if grid have vtk category
+					local hasVtkArmorPlating = false
+					for _, category in pairs(equipmentCategories) do
+						if category == "vtk-armor-plating" then
+							hasVtkArmorPlating = true
+							break
 						end
+					end
+
+					-- Checks if grid have vtk category and vtk health is avaible
+					if hasVtkArmorPlating and global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth then
+						vtkHealth = global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth
+						-- Otherwise clears vtk health
 					else
-						-- If no vtk set new health - direct damage
-						if wagonCurrentHealth <= damageTaken then
-							turretEntity.destroy()
-							wagonEntity.die()
+						global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth = nil
+					end
+
+					if damageTaken > 0 then
+						local wagonCurrentHealth = wagonEntity.health
+
+						if vtkHealth then
+							local maxHealth = wagonEntity.prototype.max_health
+							local diff = maxHealth / vtkHealth
+
+							-- Reduce the dmg in relation to max health and vtk health
+							local reducedDamage = damageTaken * diff
+
+							if wagonCurrentHealth <= reducedDamage then
+								turretEntity.destroy()
+								wagonEntity.die()
+							else
+								-- Set new health - reduced damage
+								wagonEntity.health = wagonCurrentHealth - reducedDamage
+								turretEntity.health = vtkHealth
+							end
 						else
-							wagonEntity.health = wagonCurrentHealth - damageTaken
-							turretEntity.health = wagonEntity.prototype.max_health
+							-- If no vtk set new health - direct damage
+							if wagonCurrentHealth <= damageTaken then
+								turretEntity.destroy()
+								wagonEntity.die()
+							else
+								wagonEntity.health = wagonCurrentHealth - damageTaken
+								turretEntity.health = wagonEntity.prototype.max_health
+							end
 						end
 					end
+					-- Once turret is find breaks loop
+					break
 				end
-				-- Once turret is find breaks loop
-				break
 			end
 		end
 	end

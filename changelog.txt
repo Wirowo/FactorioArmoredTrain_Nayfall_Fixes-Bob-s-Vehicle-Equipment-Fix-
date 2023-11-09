@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Info:
+	- Fixed a crash that happens when a rock or a tree is damaged
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.3
 Info:
 	- Forgot to change migration tech name fixed
