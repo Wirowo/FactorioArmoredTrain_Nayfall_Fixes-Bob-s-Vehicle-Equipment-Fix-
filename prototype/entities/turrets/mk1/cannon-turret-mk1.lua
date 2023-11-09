@@ -174,6 +174,9 @@ l_cannon_turret_mk1.attack_parameters.range = cannonTurretMk1.range
 -- Damage modifier
 l_cannon_turret_mk1.attack_parameters.damage_modifier = cannonTurretMk1.damageModifier
 
+-- Cooldown
+l_cannon_turret_mk1.attack_parameters.cooldown = 60 / cannonTurretMk1.shootsPerSecond
+
 l_cannon_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7.5 } -- Overwrite parameter
 
 -- Write result

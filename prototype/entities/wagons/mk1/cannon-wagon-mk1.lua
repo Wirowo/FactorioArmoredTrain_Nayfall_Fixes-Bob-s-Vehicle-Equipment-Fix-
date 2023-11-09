@@ -50,7 +50,7 @@ l_cannon_wagon_mk1.icon_size = 64
 l_cannon_wagon_mk1.icon_mipmaps = 4
 
 -- Inventory
-l_cannon_wagon_mk1.inventory_size = 0 -- Do not need inventory
+l_cannon_wagon_mk1.inventory_size = cannonWagonMk1.inventorySize
 
 -- Mining
 l_cannon_wagon_mk1.minable =
@@ -104,7 +104,8 @@ l_cannon_wagon_mk1.minimap_representation =
 }
 l_cannon_wagon_mk1.selected_minimap_representation =
 {
-	filename = "__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-selected-minimap-representation.png",
+	filename =
+	"__Armored-train_Nayfall_Fixes__/assets/cannon-wagon-mk1/cannon-wagon-mk1-selected-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5

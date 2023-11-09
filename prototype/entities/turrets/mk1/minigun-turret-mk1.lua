@@ -160,6 +160,9 @@ l_minigun_turret_mk1.attack_parameters.range = minigunTurretMk1.range
 -- Damage modifier
 l_minigun_turret_mk1.attack_parameters.damage_modifier = minigunTurretMk1.damageModifier
 
+-- Cooldown
+l_minigun_turret_mk1.attack_parameters.cooldown = 60 / minigunTurretMk1.shootsPerSecond
+
 l_minigun_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7 } -- Overwrite parameter
 
 -- Write result

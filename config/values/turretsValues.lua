@@ -1,7 +1,15 @@
+------------------
+---- TURRETS -----
+------------------
+
+-- MK1
+
+-- Cannon
 ArmoredTrain.mk1.turrets.cannonMk1 = {
     name = "cannon-turret-mk1",
     utility = false,
-    damageModifier = 1.5,
+    damageModifier = nil,
+    shootsPerSecond = 1,
     range = 40,
     minRange = 10,
     inventorySize = 3,
@@ -17,12 +25,14 @@ ArmoredTrain.mk1.turrets.cannonMk1 = {
     }
 }
 
+-- Flamethrower
 ArmoredTrain.mk1.turrets.flamethrowerMk1 = {
     name = "flamethrower-turret-mk1",
     utility = false,
-    damageModifier = 1.5,
-    range = 30,
-    minRange = 6,
+    damageModifier = nil,
+    shootsPerSecond = 60, -- Same as vanilla
+    range = 30,           -- Same as vanilla
+    minRange = 6,         -- Same as vanilla
     inventorySize = 3,
     -- Takes this to craft the wagon
     recipe = {
@@ -36,10 +46,12 @@ ArmoredTrain.mk1.turrets.flamethrowerMk1 = {
     }
 }
 
+-- Minigun
 ArmoredTrain.mk1.turrets.minigunMk1 = {
     name = "minigun-turret-mk1",
     utility = false,
-    damageModifier = 1.5,
+    damageModifier = nil,
+    shootsPerSecond = 10, -- Same as vanilla
     range = 35,
     inventorySize = 3,
     -- Takes this to craft the wagon
@@ -54,6 +66,28 @@ ArmoredTrain.mk1.turrets.minigunMk1 = {
     }
 }
 
+-- Rocket
+ArmoredTrain.mk1.turrets.rocketMk1 = {
+    name = "rocket-turret-mk1",
+    utility = false,
+    damageModifier = nil,
+    shootsPerSecond = 1.5,
+    range = 50,
+    minRange = 20,
+    inventorySize = 3,
+    -- Takes this to craft the wagon
+    recipe = {
+        ingredients = {
+            { "iron-plate",         20 },
+            { "steel-plate",        20 },
+            { "iron-gear-wheel",    10 },
+            { "engine-unit",        15 },
+            { "electronic-circuit", 20 }
+        }
+    }
+}
+
+-- Radar
 ArmoredTrain.mk1.turrets.radarMk1 = {
     name = "radar-turret-mk1",
     utility = true,
@@ -74,25 +108,6 @@ ArmoredTrain.mk1.turrets.radarMk1 = {
             { "iron-gear-wheel",    10 },
             { "engine-unit",        15 },
             { "electronic-circuit", 5 }
-        }
-    }
-}
-
-ArmoredTrain.mk1.turrets.rocketMk1 = {
-    name = "rocket-turret-mk1",
-    utility = false,
-    damageModifier = 1.5,
-    range = 50,
-    minRange = 20,
-    inventorySize = 3,
-    -- Takes this to craft the wagon
-    recipe = {
-        ingredients = {
-            { "iron-plate",         20 },
-            { "steel-plate",        20 },
-            { "iron-gear-wheel",    10 },
-            { "engine-unit",        15 },
-            { "electronic-circuit", 20 }
         }
     }
 }

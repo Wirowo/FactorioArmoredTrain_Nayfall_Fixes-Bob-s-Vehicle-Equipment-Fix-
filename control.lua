@@ -8,9 +8,9 @@ for _, wagon in pairs(ArmoredTrain.total.wagons) do
 	table.insert(validEntities, wagon.name)
 end
 
---------------------------
---FUNCTIONS---------------
---------------------------
+---------------------------
+-------- FUNCTIONS --------
+---------------------------
 
 -- Is this mod entity? If yes true, othervise false
 local function isModEntity(entity)
@@ -38,9 +38,9 @@ local function initTurretwagonList(tableValue)
 	end
 end
 
--------------
---ON EVENTS--
--------------
+-------------------
+---- ON EVENTS ----
+-------------------
 
 --ON BUILT \/--
 local function entityBuilt(event)
@@ -60,37 +60,43 @@ local function entityBuilt(event)
 			global.turretWagonList = initTurretwagonList(global.turretWagonList)
 
 			-- Add created wagon and turret to table (list)
-			table.insert(global.turretWagonList, { wagon = createdEntity, proxy = proxy })
+			local entityNameId = createdEntity.name .. createdEntity.unit_number
+
+			global.turretWagonList[entityNameId] = {
+				wagon = createdEntity,
+				proxy = proxy
+			}
 		end
 	end
 end
 --ON BUILT /\--
 
 -- --ON TICK \/--
-local function onTickMain(event)
+local function onTickMain()
 	-- Move each turret to follow its wagon
 	if global.turretWagonList then
-		for _, turretWagon in ipairs(global.turretWagonList) do
+		for _, turretWagon in pairs(global.turretWagonList) do
 			if turretWagon.wagon and turretWagon.wagon.valid and turretWagon.proxy and turretWagon.proxy.valid then
-				local entity = turretWagon.wagon
-				local proxy = turretWagon.proxy
+				local wagonEntity = turretWagon.wagon
+				local turretEntity = turretWagon.proxy
 
 				-- Teleport the turret to the wagon position
-				proxy.teleport(entity.position)
+				turretEntity.teleport(wagonEntity.position)
 
-				-- Apply damage taken to the wagon
-				if event.tick % 20 == 3 then
-					local damageTaken = entity.prototype.max_health - proxy.health
+				-- Transfer items from wagon to turret
+				local wagonInventory = wagonEntity.get_inventory(defines.inventory.cargo_wagon)
+				local turretInventory = turretEntity.get_inventory(defines.inventory.turret_ammo)
 
-					if damageTaken > 0 then
-						local wagonCurrentHealth = entity.health
-
-						if wagonCurrentHealth <= damageTaken then
-							proxy.destroy()
-							entity.die()
-						else
-							entity.health = wagonCurrentHealth - damageTaken
-							proxy.health = ArmoredTrain.bases.mk1.wagons.health
+				-- Iterate over items in the wagon inventory
+				for i = 1, #wagonInventory do
+					local itemStack = wagonInventory[i]
+					if itemStack and itemStack.valid_for_read then
+						-- Verify if turret can accept item
+						if turretInventory.can_insert(itemStack) then
+							-- Insert item on turret inventory
+							turretInventory.insert(itemStack)
+							-- Delete item from wagon inventory
+							wagonInventory.remove(itemStack)
 						end
 					end
 				end
@@ -100,24 +106,15 @@ local function onTickMain(event)
 end
 --ON TICK /\--
 
-
-
 -- --ON REMOVE \/--
 local function entityRemoved(event)
 	if isModEntity(event.entity) then
-		local entryIndex
-		for i, value in ipairs(global.turretWagonList) do
-			if value.wagon == event.entity then
-				entryIndex = i
-				break
-			end
-		end
-
-		if entryIndex then
-			local entry = table.remove(global.turretWagonList, entryIndex)
+		local entry = global.turretWagonList[event.entity.name .. event.entity.unit_number]
+		if entry then
 			if entry.proxy and entry.proxy.valid then
 				entry.proxy.destroy()
 			end
+			global.turretWagonList[event.entity.name .. event.entity.unit_number] = nil
 		end
 	end
 end
@@ -126,53 +123,16 @@ end
 -- --ON DESTROY \/--
 local function entityDestroyed(event)
 	if isModEntity(event.entity) then
-		local entryIndex
-		for i, value in ipairs(global.turretWagonList) do
-			if value.wagon == event.entity then
-				entryIndex = i
-				break
-			end
-		end
-
-		if entryIndex then
-			local entry = table.remove(global.turretWagonList, entryIndex)
+		local entry = global.turretWagonList[event.entity.name .. event.entity.unit_number]
+		if entry then
 			if entry.proxy and entry.proxy.valid then
 				entry.proxy.destroy()
 			end
+			global.turretWagonList[event.entity.name .. event.entity.unit_number] = nil
 		end
 	end
 end
 --ON DESTROY /\--
-
--- Store opened wagon gui to do vtk health maths
-local selectedEntity = nil
-
--- --ON PLACED EQUIPMENT \/--
-local function onPlacedEquipment(event)
-	-- local entity = event.entity
-	-- local totalHp = entity.prototype.max_health
-	-- if entity.grid ~= nil then
-	-- 	for equipment, count in pairs(entity.grid.get_contents()) do
-	-- 		if equipment == "vtk-armor-plating-equipment" then
-	-- 			totalHp = totalHp + (settings.global["vtk-armor-plating-equipment-amount"].value * count)
-	-- 		end
-	-- 		if equipment == "vtk-armor-plating-equipment-energized" then
-	-- 			totalHp = totalHp *
-	-- 				(1 + (settings.global["vtk-armor-plating-equipment-energized-multiplier"].value / 100))
-	-- 		end
-	-- 	end
-
-	-- 	log("Colocado: " .. event.equipment.name)
-	-- 	log("Nueva vida de: " .. entity.name .. entity.unit_number .. "=" .. totalHp)
-	-- end
-end
---ON PLACED EQUIPMENT /\--
-
-local function setSelectedEntity(event)
-	if isModEntity(event.entity) then
-		selectedEntity = event.entity
-	end
-end
 
 -- Events
 script.on_event(defines.events.on_built_entity, entityBuilt)
@@ -187,6 +147,145 @@ script.on_event(defines.events.on_entity_died, entityDestroyed)
 
 script.on_event(defines.events.on_tick, onTickMain)
 
-script.on_event(defines.events.on_player_placed_equipment, onPlacedEquipment)
+---------------
+----- VTK -----
+---------------
 
-script.on_event(defines.events.on_gui_opened, setSelectedEntity)
+-- --ON DAMAGED \/--
+local function entityDamaged(event)
+	if global.turretWagonList then
+		-- Get entity name and unit number
+		local entityNameId = event.entity.name .. event.entity.unit_number
+
+		for _, turretWagon in pairs(global.turretWagonList) do
+			-- Get turret name and unit number
+			local turretNameId = turretWagon.proxy.name .. turretWagon.proxy.unit_number
+
+			-- The turret is the entity?
+			if turretNameId == entityNameId then
+				local wagonEntity = turretWagon.wagon
+				local turretEntity = turretWagon.proxy
+				local damageTaken = event.final_damage_amount
+				local vtkHealth
+
+				local equipmentCategories = wagonEntity.grid.prototype.equipment_categories
+
+				-- Checks if grid have vtk category
+				local hasVtkArmorPlating = false
+				for _, category in pairs(equipmentCategories) do
+					if category == "vtk-armor-plating" then
+						hasVtkArmorPlating = true
+						break
+					end
+				end
+
+				-- Checks if grid have vtk category and vtk health is avaible
+				if hasVtkArmorPlating and global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth then
+					vtkHealth = global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth
+					-- Otherwise clears vtk health
+				else
+					global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth = nil
+				end
+
+				if damageTaken > 0 then
+					local wagonCurrentHealth = wagonEntity.health
+
+					if vtkHealth then
+						local maxHealth = wagonEntity.prototype.max_health
+						local diff = maxHealth / vtkHealth
+
+						-- Reduce the dmg in relation to max health and vtk health
+						local reducedDamage = damageTaken * diff
+
+						if wagonCurrentHealth <= reducedDamage then
+							turretEntity.destroy()
+							wagonEntity.die()
+						else
+							-- Set new health - reduced damage
+							wagonEntity.health = wagonCurrentHealth - reducedDamage
+							turretEntity.health = vtkHealth
+						end
+					else
+						-- If no vtk set new health - direct damage
+						if wagonCurrentHealth <= damageTaken then
+							turretEntity.destroy()
+							wagonEntity.die()
+						else
+							wagonEntity.health = wagonCurrentHealth - damageTaken
+							turretEntity.health = wagonEntity.prototype.max_health
+						end
+					end
+				end
+			end
+		end
+	end
+end
+-- --ON DAMAGED /\--
+
+-- Store opened wagon to do vtk health maths
+local selectedWagon
+
+local function setSelectedWagon(event)
+	if isModEntity(event.entity) then
+		local equipmentCategories = event.entity.grid.prototype.equipment_categories
+
+		-- Checks if grid have vtk category
+		local hasVtkArmorPlating = false
+		for _, category in pairs(equipmentCategories) do
+			if category == "vtk-armor-plating" then
+				hasVtkArmorPlating = true
+				break
+			end
+		end
+
+		-- If have vtk category select the entity
+		if hasVtkArmorPlating then
+			selectedWagon = event.entity
+			-- Otherwise clears the vtkHealth property on that entity
+		else
+			global.turretWagonList[event.entity.name .. event.entity.unit_number].vtkHealth = nil
+		end
+	end
+end
+
+local function clearSelectedWagon()
+	selectedWagon = nil
+end
+
+local function updateVtkHealth()
+	if selectedWagon then
+		local totalHealth = selectedWagon.prototype.max_health
+		local hasPlatingEquipment = false
+
+		if selectedWagon.grid then
+			for equipment, count in pairs(selectedWagon.grid.get_contents()) do
+				if equipment == "vtk-armor-plating-equipment" then
+					totalHealth = totalHealth + (settings.global["vtk-armor-plating-equipment-amount"].value * count)
+					hasPlatingEquipment = true
+				end
+				if equipment == "vtk-armor-plating-equipment-energized" then
+					totalHealth = totalHealth *
+						(1 + (settings.global["vtk-armor-plating-equipment-energized-multiplier"].value / 100))
+					hasPlatingEquipment = true
+				end
+			end
+		end
+
+		-- If has plating adds its total health to global
+		if hasPlatingEquipment then
+			global.turretWagonList[selectedWagon.name .. selectedWagon.unit_number].vtkHealth = totalHealth
+			-- Otherwise clears the vtkHealth property on that entity
+		else
+			global.turretWagonList[selectedWagon.name .. selectedWagon.unit_number].vtkHealth = nil
+		end
+	end
+end
+
+-- Events
+script.on_event(defines.events.on_entity_damaged, entityDamaged)
+
+script.on_event(defines.events.on_gui_opened, setSelectedWagon)
+script.on_event(defines.events.on_gui_closed, clearSelectedWagon)
+
+script.on_event(defines.events.on_player_placed_equipment, updateVtkHealth)
+script.on_event(defines.events.on_player_removed_equipment, updateVtkHealth)

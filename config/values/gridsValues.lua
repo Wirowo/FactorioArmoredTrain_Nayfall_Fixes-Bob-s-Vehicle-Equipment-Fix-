@@ -1,3 +1,7 @@
+-----------------
+----- GRIDS -----
+-----------------
+
 -- Here the grids are created, then uploaded on prototype/grids
 
 -- For each locomotive generates the expected grid
@@ -15,7 +19,7 @@ end
 ArmoredTrain.bases.grids.turretWagon = "turretWagonMk"
 ArmoredTrain.bases.grids.utilityWagon = "utilityWagonMk"
 
--- Wagon mk1
+-- Turret wagon mk1
 ArmoredTrain.grids.turretWagonMk1 = {
     type = "equipment-grid",
     name = ArmoredTrain.bases.grids.turretWagon .. "1" .. "-grid",
@@ -24,7 +28,7 @@ ArmoredTrain.grids.turretWagonMk1 = {
     equipment_categories = { "defense-equipment", "energy-equipment" }
 }
 
--- Utility mk1
+-- Utility wagon mk1
 ArmoredTrain.grids.utilityWagonMk1 = {
     type = "equipment-grid",
     name = ArmoredTrain.bases.grids.utilityWagon .. "1" .. "-grid",

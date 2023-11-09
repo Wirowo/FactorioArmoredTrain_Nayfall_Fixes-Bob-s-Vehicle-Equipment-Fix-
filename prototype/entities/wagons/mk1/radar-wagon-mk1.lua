@@ -50,7 +50,7 @@ l_radar_wagon_mk1.icon_size = 64
 l_radar_wagon_mk1.icon_mipmaps = 4
 
 -- Inventory
-l_radar_wagon_mk1.inventory_size = 0 -- Do not need inventory
+l_radar_wagon_mk1.inventory_size = radarWagonMk1.inventorySize
 
 -- Mining
 l_radar_wagon_mk1.minable =

@@ -50,7 +50,7 @@ l_minigun_wagon_mk1.icon_size = 64
 l_minigun_wagon_mk1.icon_mipmaps = 4
 
 -- Inventory
-l_minigun_wagon_mk1.inventory_size = 0 -- Do not need inventory
+l_minigun_wagon_mk1.inventory_size = minigunWagonMk1.inventorySize
 
 -- Mining
 l_minigun_wagon_mk1.minable =
@@ -97,7 +97,8 @@ l_minigun_wagon_mk1.vertical_doors = nil
 -- Minimap representation
 l_minigun_wagon_mk1.minimap_representation =
 {
-	filename = "__Armored-train_Nayfall_Fixes__/assets/minigun-platform-mk1/minigun-platform-mk1-minimap-representation.png",
+	filename =
+	"__Armored-train_Nayfall_Fixes__/assets/minigun-platform-mk1/minigun-platform-mk1-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5

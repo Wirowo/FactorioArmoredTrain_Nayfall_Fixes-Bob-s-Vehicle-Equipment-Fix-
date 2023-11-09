@@ -1,12 +1,13 @@
+-----------------------
+----- LOCOMOTIVES -----
+-----------------------
+
 -- Locomotive Mk1
 ArmoredTrain.mk1.locomotives.armoredLocomotiveMk1 = {
     name = "armored-locomotive-mk1",
-    -- x2 Compared to vanilla
-    health = 2000,
-    -- x2 Compared to vanilla
-    weight = 4000,
-    -- Almost x1,7 compared to vanilla
-    maxPower = "1MW",
+    health = 2000,    -- x2 Compared to vanilla
+    weight = 4000,    -- x2 Compared to vanilla
+    maxPower = "1MW", -- Almost x1,7 compared to vanilla
     stackSize = 5,
     burner = {
         effectivity = 1,

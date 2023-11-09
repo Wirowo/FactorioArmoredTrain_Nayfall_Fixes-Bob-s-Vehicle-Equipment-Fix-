@@ -50,7 +50,7 @@ l_rocket_wagon_mk1.icon_size = 64
 l_rocket_wagon_mk1.icon_mipmaps = 4
 
 -- Inventory
-l_rocket_wagon_mk1.inventory_size = 0 -- Do not need inventory
+l_rocket_wagon_mk1.inventory_size = rocketWagonMk1.inventorySize
 
 -- Mining
 l_rocket_wagon_mk1.minable =
@@ -97,7 +97,8 @@ l_rocket_wagon_mk1.vertical_doors = nil
 -- Minimap representation
 l_rocket_wagon_mk1.minimap_representation =
 {
-	filename = "__Armored-train_Nayfall_Fixes__/assets/rocket-platform-mk1/rocket-platform-mk1-minimap-representation.png",
+	filename =
+	"__Armored-train_Nayfall_Fixes__/assets/rocket-platform-mk1/rocket-platform-mk1-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5

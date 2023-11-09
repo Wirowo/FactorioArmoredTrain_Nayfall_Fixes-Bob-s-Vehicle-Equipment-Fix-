@@ -168,6 +168,9 @@ l_rocket_turret_mk1.attack_parameters.range = rocketTurretMk1.range
 -- Damage modifier
 l_rocket_turret_mk1.attack_parameters.damage_modifier = rocketTurretMk1.damageModifier
 
+-- Cooldown
+l_rocket_turret_mk1.attack_parameters.cooldown = 60 / rocketTurretMk1.shootsPerSecond
+
 l_rocket_turret_mk1.attack_parameters.projectile_center = { -0.17, -0.75 } -- Overwrite parameter
 
 -- Write result

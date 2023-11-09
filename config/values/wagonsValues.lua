@@ -1,17 +1,17 @@
--- Wagons auto generates for each turret
+------------------
+----- WAGONS -----
+------------------
 
--- Hp for mk1 wagons(Probably temporal)
-ArmoredTrain.bases.mk1.wagons.health = 1200
+-- Wagons auto generates for each turret
 
 -- Wagon Mk1
 for key, turret in pairs(ArmoredTrain.mk1.turrets) do
     ArmoredTrain.mk1.wagons[key] = {
         name = turret.name:gsub("-turret%-", "-wagon-"),
         utility = turret.utility,
-        -- x2 Compared to vanilla
-        health = ArmoredTrain.bases.mk1.wagons.health,
-        -- x2 Compared to vanilla
-        weight = 2000,
+        health = 1200, -- x2 Compared to vanilla
+        weight = 2000, -- x2 Compared to vanilla
+        inventorySize = 5,
         stackSize = 5,
         recipe = turret.recipe,
         -- 10% More than vanilla

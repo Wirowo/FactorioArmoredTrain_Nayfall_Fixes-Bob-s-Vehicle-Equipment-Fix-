@@ -52,7 +52,8 @@ l_flamethrower_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function flamethrower_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-raising.png",
+		filename =
+		"__Armored-train_Nayfall_Fixes__/assets/flamethrower-turret-mk1/sprites/flamethrower-turret-raising.png",
 		priority = "medium",
 		width = 152,
 		height = 128,
@@ -167,6 +168,9 @@ l_flamethrower_turret_mk1.attack_parameters.range = flamethrowerTurretMk1.range
 
 -- Damage modifier
 l_flamethrower_turret_mk1.attack_parameters.damage_modifier = flamethrowerTurretMk1.damageModifier
+
+-- Cooldown
+l_flamethrower_turret_mk1.attack_parameters.cooldown = 60 / flamethrowerTurretMk1.shootsPerSecond
 
 l_flamethrower_turret_mk1.attack_parameters.gun_center_shift = { 0, -3.25 } --  default -1.15
 

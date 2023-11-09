@@ -57,16 +57,25 @@ local baseTech = data.raw["technology"]
 for _, tech in pairs(baseTech) do
 	-- Check if technology is a physical projectile buff
 	if tech.name and string.find(tech.name, "physical%-projectile") then
-		-- Iterate over all mod turrets
-		for _, turret in pairs(ArmoredTrain.total.turrets) do
-			-- Check if turret is a minigun
-			if turret.name and string.find(turret.name, "minigun") then
-				-- Insert turret on technology
-				table.insert(tech.effects, {
-					type = "turret-attack",
-					turret_id = turret.name,
-					modifier = 0.1
-				})
+		-- Copy gun turret effect
+		local gunTurretEffect
+		for _, effect in pairs(tech.effects) do
+			if effect.turret_id and string.find(effect.turret_id, "turret") then
+				gunTurretEffect = util.table.deepcopy(effect)
+				break
+			end
+		end
+
+		if gunTurretEffect then
+			-- Iterate over all mod turrets
+			for _, turret in pairs(ArmoredTrain.total.turrets) do
+				-- Check if turret is a minigun
+				if turret.name and string.find(turret.name, "minigun") then
+					-- Changes turret name
+					gunTurretEffect.turret_id = turret.name
+					-- Insert turret on technology
+					table.insert(tech.effects, gunTurretEffect)
+				end
 			end
 		end
 	end

@@ -2,7 +2,10 @@
 Version: 1.0.1
 Info:
 	- More code refactor for easy changes
-	
+	- Added vtk armor plating compatibility
+	- Added 5 inventory slots to turret wagons
+	- Turrets now recharge ammo from wagon
+	- More rate of fire to rocket and cannon turrets
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
