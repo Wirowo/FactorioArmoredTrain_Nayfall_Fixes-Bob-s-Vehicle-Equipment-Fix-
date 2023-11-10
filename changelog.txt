@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.5
+Info:
+	- Added base to dependencies, probably it was the problem for locomotive not found
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.4
 Info:
 	- Fixed a crash that happens when a rock or a tree is damaged
