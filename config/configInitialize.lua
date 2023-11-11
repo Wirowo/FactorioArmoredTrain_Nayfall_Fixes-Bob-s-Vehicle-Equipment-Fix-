@@ -12,6 +12,7 @@ ArmoredTrain = {
         wagons = {}
     },
     grids = {},
+    technologies = {},
     -- Place to store some data
     bases = {
         grids = {}
@@ -29,5 +30,8 @@ require("values.wagonsValues")
 
 -- Grids
 require("values.gridsValues")
+
+-- Technologies
+require("values.technologiesValues")
 
 return ArmoredTrain

@@ -9,11 +9,11 @@ data:extend
 	{
 		type = "item",
 		name = armoredLocomotiveMk1.name,
-		icon = "__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/armored-locomotive-mk1-icon.png",
+		icon = "__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/armored-locomotive-mk1-icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "transport",
-		order = "a[train-system]-l[locomotive_mk1_00]",
+		order = armoredLocomotiveMk1.order,
 		place_result = armoredLocomotiveMk1.name,
 		stack_size = armoredLocomotiveMk1.stackSize
 	}
@@ -39,40 +39,22 @@ data:extend
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_armored_locomotive_mk1 = util.table.deepcopy(data.raw["locomotive"]["locomotive"])
+local e_armored_locomotive_mk1 = util.table.deepcopy(data.raw["locomotive"]["locomotive"])
 
 -- Name
-l_armored_locomotive_mk1.name = armoredLocomotiveMk1.name
-
--- Icon
-l_armored_locomotive_mk1.icon =
-"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/armored-locomotive-mk1-icon.png"
-l_armored_locomotive_mk1.icon_size = 64
-l_armored_locomotive_mk1.icon_mipmaps = 4
+e_armored_locomotive_mk1.name = armoredLocomotiveMk1.name
 
 -- Mining
-l_armored_locomotive_mk1.minable =
+e_armored_locomotive_mk1.minable =
 {
-	mining_time = 0.5,
+	mining_time = armoredLocomotiveMk1.mining_time,
 	result = armoredLocomotiveMk1.name
 }
 
--- Hp
-l_armored_locomotive_mk1.max_health = armoredLocomotiveMk1.health;
-
--- Weight
-l_armored_locomotive_mk1.weight = armoredLocomotiveMk1.weight;
-
--- Max power
-l_armored_locomotive_mk1.max_power = armoredLocomotiveMk1.maxPower
-
--- Resistances
-l_armored_locomotive_mk1.resistances = armoredLocomotiveMk1.resistances
-
 -- Burner
-l_armored_locomotive_mk1.burner =
+e_armored_locomotive_mk1.burner =
 {
-	fuel_categories = { "chemical" },
+	fuel_categories = armoredLocomotiveMk1.burner.fuel_categories,
 	effectivity = armoredLocomotiveMk1.burner.effectivity,
 	fuel_inventory_size = armoredLocomotiveMk1.burner.fuelInventorySize,
 	smoke =
@@ -93,7 +75,7 @@ l_armored_locomotive_mk1.burner =
 }
 
 -- Animation
-l_armored_locomotive_mk1.pictures =
+e_armored_locomotive_mk1.pictures =
 {
 	layers =
 	{
@@ -105,14 +87,14 @@ l_armored_locomotive_mk1.pictures =
 			allow_low_quality_rotation = true,
 			filenames =
 			{
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-01.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-02.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-03.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-04.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-05.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-06.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-07.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-08.png"
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-01.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-02.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-03.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-04.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-05.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-06.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-07.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-08.png"
 			},
 			line_length = 32,
 			lines_per_file = 1,
@@ -127,14 +109,14 @@ l_armored_locomotive_mk1.pictures =
 			allow_low_quality_rotation = true,
 			filenames =
 			{
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-01.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-02.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-03.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-04.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-05.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-06.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-07.png",
-				"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/sprites/armored-locomotive-mk1-mask-08.png"
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-01.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-02.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-03.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-04.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-05.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-06.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-07.png",
+				"__Armored-train_Nayfall_Fixes__/assets/locomotives/mk1/sprites/armored-locomotive-mk1-mask-08.png"
 			},
 			line_length = 32,
 			lines_per_file = 1,
@@ -169,25 +151,59 @@ l_armored_locomotive_mk1.pictures =
 }
 
 -- Minimap representation
-l_armored_locomotive_mk1.minimap_representation =
+e_armored_locomotive_mk1.minimap_representation =
 {
 	filename =
-	"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/armored-locomotive-mk1-minimap-representation.png",
+	"__Armored-train_Nayfall_Fixes__/assets/locomotives/armored-locomotive-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
-l_armored_locomotive_mk1.selected_minimap_representation =
+e_armored_locomotive_mk1.selected_minimap_representation =
 {
 	filename =
-	"__Armored-train_Nayfall_Fixes__/assets/armored-locomotive-mk1/armored-locomotive-mk1-selected-minimap-representation.png",
+	"__Armored-train_Nayfall_Fixes__/assets/locomotives/armored-locomotive-selected-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
 
+---------------
+---- STATS ----
+---------------
+
+-- Hp
+e_armored_locomotive_mk1.max_health = armoredLocomotiveMk1.max_health;
+
+-- Weight
+e_armored_locomotive_mk1.weight = armoredLocomotiveMk1.weight;
+
+-- Max speed
+e_armored_locomotive_mk1.max_speed = armoredLocomotiveMk1.max_speed
+
+-- Max power
+e_armored_locomotive_mk1.max_power = armoredLocomotiveMk1.max_power
+
+-- Braking force
+e_armored_locomotive_mk1.braking_force = armoredLocomotiveMk1.braking_force
+
+-- Reversing power modifier
+e_armored_locomotive_mk1.reversing_power_modifier = armoredLocomotiveMk1.reversing_power_modifier
+
+-- Friction_force
+e_armored_locomotive_mk1.friction_force = armoredLocomotiveMk1.friction_force
+
+-- Air resistance
+e_armored_locomotive_mk1.air_resistance = armoredLocomotiveMk1.air_resistance
+
+-- Energy per hit point
+e_armored_locomotive_mk1.energy_per_hit_point = armoredLocomotiveMk1.energy_per_hit_point
+
+-- Resistances
+e_armored_locomotive_mk1.resistances = armoredLocomotiveMk1.resistances
+
 -- Write result
 data:extend
 ({
-	l_armored_locomotive_mk1
+	e_armored_locomotive_mk1
 })

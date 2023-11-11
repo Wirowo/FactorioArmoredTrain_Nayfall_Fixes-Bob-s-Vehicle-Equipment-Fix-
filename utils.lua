@@ -73,4 +73,17 @@ Utils.changeGrid = function(entityType, entityName, gridName)
     end
 end
 
+-- Deep extend function
+
+table.deep_extend = function(destination, data)
+    for key, value in pairs(data) do
+        if type(value) == "table" and type(destination[key]) == "table" then
+            table.deep_extend(destination[key], value)
+        else
+            destination[key] = value
+        end
+    end
+    return destination
+end
+
 return Utils

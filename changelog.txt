@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Info:
+	- Changed locomotives, wagons and turrets stats to make them scalable with new tiers
+	- Added requirements of military science pack for technology
+	- Added 1 row and column to radar wagon grid, now is 5x5
+	- Added armored fluid and cargo wagons (There isn't a base image for items, so they will have the vanilla one, idk how to make one)
+	- Removed duplicated sprites
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Info:
 	- Added base to dependencies, probably it was the problem for locomotive not found

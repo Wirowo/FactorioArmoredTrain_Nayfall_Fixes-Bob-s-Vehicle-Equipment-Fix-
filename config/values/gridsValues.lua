@@ -32,7 +32,7 @@ ArmoredTrain.grids.turretWagonMk1 = {
 ArmoredTrain.grids.utilityWagonMk1 = {
     type = "equipment-grid",
     name = ArmoredTrain.bases.grids.utilityWagon .. "1" .. "-grid",
-    width = 4,
-    height = 4,
+    width = 5,
+    height = 5,
     equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
 }

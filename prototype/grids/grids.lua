@@ -21,7 +21,12 @@ for _, wagon in pairs(ArmoredTrain.total.wagons) do
         if not wagon.utility then
             Utils.changeGrid("cargo-wagon", wagon.name, ArmoredTrain.bases.grids.turretWagon .. tier .. "-grid")
         else
-            Utils.changeGrid("cargo-wagon", wagon.name, ArmoredTrain.bases.grids.utilityWagon .. tier .. "-grid")
+            -- Is not a fluid wagon?
+            if not string.find(wagon.name, "fluid") then
+                Utils.changeGrid("cargo-wagon", wagon.name, ArmoredTrain.bases.grids.utilityWagon .. tier .. "-grid")
+            else
+                Utils.changeGrid("fluid-wagon", wagon.name, ArmoredTrain.bases.grids.utilityWagon .. tier .. "-grid")
+            end
         end
     end
 end

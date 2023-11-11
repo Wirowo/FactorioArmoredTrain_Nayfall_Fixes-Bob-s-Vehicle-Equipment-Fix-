@@ -6,13 +6,13 @@ local radarWagonMk1 = ArmoredTrain.mk1.wagons.radarMk1
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_radar_mk1 = util.table.deepcopy(data.raw["radar"]["radar"])
+local e_radar_mk1 = table.deepcopy(data.raw["radar"]["radar"])
 
 -- Name
-l_radar_mk1.name = radarTurretMk1.name
+e_radar_mk1.name = radarTurretMk1.name
 
 -- Flags
-l_radar_mk1.flags =
+e_radar_mk1.flags =
 {
 	"player-creation", -- Can draw enemies
 	"placeable-off-grid",
@@ -23,33 +23,34 @@ l_radar_mk1.flags =
 }
 
 -- Mining
-l_radar_mk1.minable = nil
+e_radar_mk1.minable = nil
 
 -- HP
-l_radar_mk1.max_health = radarWagonMk1
-	.health -- Same as platform hp (Critical component or will be destroyed using old script)
+e_radar_mk1.max_health = radarWagonMk1
+	.max_health -- Same as platform hp (Critical component or will be destroyed using old script)
 
 -- Resistance
-l_radar_mk1.resistances = radarWagonMk1.resistances -- Prevent faster damage from turret
+e_radar_mk1.resistances = radarWagonMk1.resistances -- Prevent faster damage from turret
 
 -- Collision
-l_radar_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
-l_radar_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
-l_radar_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
+e_radar_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
+e_radar_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
+e_radar_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
 
 -- Radar parameters
-l_radar_mk1.energy_per_sector = radarTurretMk1
-	.energyPerSector                                                                          -- Default (devide by 7) "10MJ"	
-l_radar_mk1.max_distance_of_sector_revealed = radarTurretMk1.maxDistanceOfSector              -- Default 14
-l_radar_mk1.max_distance_of_nearby_sector_revealed = radarTurretMk1.maxDistanceOfNearbySector -- Default 3
-l_radar_mk1.energy_per_nearby_scan = radarTurretMk1.energyPerNearbyScan                       -- Default "250kJ"
-l_radar_mk1.energy_source =
+e_radar_mk1.energy_per_sector = radarTurretMk1
+	.energy_per_sector                                                                                     -- Default (devide by 7) "10MJ"	
+e_radar_mk1.max_distance_of_sector_revealed = radarTurretMk1.max_distance_of_sector_revealed               -- Default 14
+e_radar_mk1.max_distance_of_nearby_sector_revealed = radarTurretMk1.max_distance_of_nearby_sector_revealed -- Default 3
+e_radar_mk1.energy_per_nearby_scan = radarTurretMk1
+	.energy_per_nearby_scan                                                                                -- Default "250kJ"
+e_radar_mk1.energy_source =
 {
 	type = "burner",
 	fuel_categories = { "chemical" },
 	effectivity = radarTurretMk1.burner.effectivity,
 	emissions_per_minute = 1, -- 4
-	fuel_inventory_size = radarTurretMk1.burner.fuelInventorySize,
+	fuel_inventory_size = radarTurretMk1.burner.fuel_inventory_size,
 	smoke =
 	{
 		{
@@ -61,7 +62,7 @@ l_radar_mk1.energy_source =
 		}
 	}
 }
-l_radar_mk1.energy_usage = radarTurretMk1.energyUsage --  "300kW"
+e_radar_mk1.energy_usage = radarTurretMk1.energy_usage --  "300kW"
 
 -- Base picture
 local blank_layers =
@@ -76,11 +77,11 @@ local blank_layers =
 		}
 	}
 }
-l_radar_mk1.integration_patch = blank_layers
-l_radar_mk1.pictures = blank_layers
+e_radar_mk1.integration_patch = blank_layers
+e_radar_mk1.pictures = blank_layers
 
 -- Write result
 data:extend
 ({
-	l_radar_mk1
+	e_radar_mk1
 })

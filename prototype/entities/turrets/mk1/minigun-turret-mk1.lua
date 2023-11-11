@@ -6,13 +6,13 @@ local minigunWagonMk1 = ArmoredTrain.mk1.wagons.minigunMk1
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_minigun_turret_mk1 = util.table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
+local e_minigun_turret_mk1 = table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
 
 -- Name
-l_minigun_turret_mk1.name = minigunTurretMk1.name
+e_minigun_turret_mk1.name = minigunTurretMk1.name
 
 -- Flags
-l_minigun_turret_mk1.flags =
+e_minigun_turret_mk1.flags =
 {
 	"player-creation", -- Can draw enemies
 	"placeable-off-grid",
@@ -23,33 +23,33 @@ l_minigun_turret_mk1.flags =
 }
 
 -- Mining
-l_minigun_turret_mk1.minable = nil
+e_minigun_turret_mk1.minable = nil
 
 -- HP
-l_minigun_turret_mk1.max_health = minigunWagonMk1
-	.health -- Same as platform hp (Critical component or will be destroyed using old script)
+e_minigun_turret_mk1.max_health = minigunWagonMk1
+	.max_health -- Same as platform hp (Critical component or will be destroyed using old script)
 
 -- Resistance
-l_minigun_turret_mk1.resistances = minigunWagonMk1.resistances -- Prevent faster damage from turret
+e_minigun_turret_mk1.resistances = minigunWagonMk1.resistances -- Prevent faster damage from turret
 
 -- Collision
-l_minigun_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
-l_minigun_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
-l_minigun_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
+e_minigun_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
+e_minigun_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
+e_minigun_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
 
 -- Rotation speed
-local l_base_tank_copy_param = util.table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
-l_minigun_turret_mk1.rotation_speed = l_base_tank_copy_param
+local s_base_tank_copy_param = table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
+e_minigun_turret_mk1.rotation_speed = s_base_tank_copy_param
 
 -- Inventory
-l_minigun_turret_mk1.inventory_size = minigunTurretMk1.inventorySize
+e_minigun_turret_mk1.inventory_size = minigunTurretMk1.inventory_size
 
 -- Animation functions
-l_minigun_turret_mk1.gun_animation_render_layer = "higher-object-under"
+e_minigun_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function minigun_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Nayfall_Fixes__/assets/minigun-turret-mk1/sprites/minigun-turret-raising.png",
+		filename = "__Armored-train_Nayfall_Fixes__/assets/turrets/minigun/mk1/sprites/minigun-turret-raising.png",
 		priority = "medium",
 		width = 130,
 		height = 126,
@@ -81,25 +81,25 @@ local function minigun_turret_attack(inputs)
 				{
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/minigun-turret-mk1/sprites/minigun-turret-shooting-1.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/minigun/mk1/sprites/minigun-turret-shooting-1.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/minigun-turret-mk1/sprites/minigun-turret-shooting-2.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/minigun/mk1/sprites/minigun-turret-shooting-2.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/minigun-turret-mk1/sprites/minigun-turret-shooting-3.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/minigun/mk1/sprites/minigun-turret-shooting-3.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/minigun-turret-mk1/sprites/minigun-turret-shooting-4.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/minigun/mk1/sprites/minigun-turret-shooting-4.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					}
@@ -111,23 +111,23 @@ local function minigun_turret_attack(inputs)
 end
 
 -- Animation calls
-l_minigun_turret_mk1.folded_animation =
+e_minigun_turret_mk1.folded_animation =
 {
 	layers =
 	{
 		minigun_turret_extension { frame_count = 1, line_length = 1 },
 	}
 }
-l_minigun_turret_mk1.preparing_animation =
+e_minigun_turret_mk1.preparing_animation =
 {
 	layers =
 	{
 		minigun_turret_extension {},
 	}
 }
-l_minigun_turret_mk1.prepared_animation = minigun_turret_attack { frame_count = 1 }
-l_minigun_turret_mk1.attacking_animation = minigun_turret_attack {}
-l_minigun_turret_mk1.folding_animation =
+e_minigun_turret_mk1.prepared_animation = minigun_turret_attack { frame_count = 1 }
+e_minigun_turret_mk1.attacking_animation = minigun_turret_attack {}
+e_minigun_turret_mk1.folding_animation =
 {
 	layers =
 	{
@@ -148,25 +148,25 @@ local blank_layers =
 		}
 	}
 }
-l_minigun_turret_mk1.base_picture = blank_layers
+e_minigun_turret_mk1.base_picture = blank_layers
 
 --------------
 --- ATTACK ---
 --------------
 
 -- Range
-l_minigun_turret_mk1.attack_parameters.range = minigunTurretMk1.range
+e_minigun_turret_mk1.attack_parameters.range = minigunTurretMk1.range -- Overwrite parameter
 
 -- Damage modifier
-l_minigun_turret_mk1.attack_parameters.damage_modifier = minigunTurretMk1.damageModifier
+e_minigun_turret_mk1.attack_parameters.damage_modifier = minigunTurretMk1.damage_modifier -- Overwrite parameter
 
 -- Cooldown
-l_minigun_turret_mk1.attack_parameters.cooldown = 60 / minigunTurretMk1.shootsPerSecond
+e_minigun_turret_mk1.attack_parameters.cooldown = minigunTurretMk1.cooldown           -- Overwrite parameter
 
-l_minigun_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7 } -- Overwrite parameter
+e_minigun_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7 } -- Overwrite parameter
 
 -- Write result
 data:extend
 ({
-	l_minigun_turret_mk1
+	e_minigun_turret_mk1
 })

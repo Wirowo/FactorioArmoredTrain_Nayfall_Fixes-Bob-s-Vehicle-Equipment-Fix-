@@ -3,58 +3,26 @@
 --------------------
 
 -- Mk1 Tech
-
-local techEffectMk1 = {}
-
--- Adds mk1 locomotives
-for _, locomotive in pairs(ArmoredTrain.mk1.locomotives) do
-	if locomotive.name then
-		table.insert(techEffectMk1, {
-			type = "unlock-recipe",
-			recipe = locomotive.name
-		})
-	end
-end
-
--- Adds mk1 wagons
-for _, wagon in pairs(ArmoredTrain.mk1.wagons) do
-	if wagon.name then
-		table.insert(techEffectMk1, {
-			type = "unlock-recipe",
-			recipe = wagon.name
-		})
-	end
-end
-
 data:extend
 ({
 	{
 		type = "technology",
-		name = "armored-train-turret-wagons-MK1",
+		name = ArmoredTrain.technologies.mk1.name,
 		icon = "__Armored-train_Nayfall_Fixes__/prototype/technology/armored-train-technology-icon.png",
 		icon_size = 128,
 		-- Unlock recipes when technology researched
-		effects = techEffectMk1,
-		prerequisites = { "gun-turret", "military", "railway" },
-		unit =
-		{
-			count = 100,
-			ingredients =
-			{
-				{ "automation-science-pack", 1 },
-				{ "logistic-science-pack",   1 }
-			},
-			time = 20
-		},
-		order = "e-g"
+		effects = ArmoredTrain.technologies.mk1.effects,
+		prerequisites = ArmoredTrain.technologies.mk1.prerequisites,
+		unit = ArmoredTrain.technologies.mk1.unit,
+		order = ArmoredTrain.technologies.mk1.order
 	}
 })
 
 -- Base technologies
-local baseTech = data.raw["technology"]
+local baseTechs = data.raw["technology"]
 
 -- Add minigun turrets to physical projectile technologies bonus
-for _, tech in pairs(baseTech) do
+for _, tech in pairs(baseTechs) do
 	-- Check if technology is a physical projectile buff
 	if tech.name and string.find(tech.name, "physical%-projectile") then
 		-- Copy gun turret effect

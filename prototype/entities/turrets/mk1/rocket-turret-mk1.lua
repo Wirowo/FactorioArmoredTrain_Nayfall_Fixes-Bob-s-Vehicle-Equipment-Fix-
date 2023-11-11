@@ -6,13 +6,13 @@ local rocketWagonMk1 = ArmoredTrain.mk1.wagons.rocketMk1
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_rocket_turret_mk1 = util.table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
+local e_rocket_turret_mk1 = table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
 
 -- Name
-l_rocket_turret_mk1.name = rocketTurretMk1.name
+e_rocket_turret_mk1.name = rocketTurretMk1.name
 
 -- Flags
-l_rocket_turret_mk1.flags =
+e_rocket_turret_mk1.flags =
 {
 	"player-creation", -- Can draw enemies
 	"placeable-off-grid",
@@ -23,36 +23,36 @@ l_rocket_turret_mk1.flags =
 }
 
 -- Mining
-l_rocket_turret_mk1.minable = nil
+e_rocket_turret_mk1.minable = nil
 
 -- HP
-l_rocket_turret_mk1.max_health = rocketWagonMk1
-	.health -- Same as platform hp (Critical component or will be destroyed using old script)
+e_rocket_turret_mk1.max_health = rocketWagonMk1
+	.max_health -- Same as platform hp (Critical component or will be destroyed using old script)
 
 -- Resistance
-l_rocket_turret_mk1.resistances = rocketWagonMk1.resistances -- Prevent faster damage from turret
+e_rocket_turret_mk1.resistances = rocketWagonMk1.resistances -- Prevent faster damage from turret
 
 -- Collision
-l_rocket_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
-l_rocket_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
-l_rocket_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
+e_rocket_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
+e_rocket_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
+e_rocket_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
 
 -- Rotation speed
-local l_base_tank_copy_param = util.table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
-l_rocket_turret_mk1.rotation_speed = l_base_tank_copy_param
+local s_base_tank_copy_param = table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
+e_rocket_turret_mk1.rotation_speed = s_base_tank_copy_param
 
 -- Inventory
-l_rocket_turret_mk1.inventory_size = rocketTurretMk1.inventorySize
+e_rocket_turret_mk1.inventory_size = rocketTurretMk1.inventory_size
 
 -- Attack speed
-l_rocket_turret_mk1.attacking_speed = l_rocket_turret_mk1.attacking_speed / 2
+e_rocket_turret_mk1.attacking_speed = e_rocket_turret_mk1.attacking_speed / 2
 
 -- Animation functions
-l_rocket_turret_mk1.gun_animation_render_layer = "higher-object-under"
+e_rocket_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function rocket_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Nayfall_Fixes__/assets/rocket-turret-mk1/sprites/rocket-turret-raising.png",
+		filename = "__Armored-train_Nayfall_Fixes__/assets/turrets/rocket/mk1/sprites/rocket-turret-raising.png",
 		priority = "medium",
 		width = 88,
 		height = 80,
@@ -84,25 +84,25 @@ local function rocket_turret_attack(inputs)
 				{
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/rocket-turret-mk1/sprites/rocket-turret-shooting-1.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/rocket/mk1/sprites/rocket-turret-shooting-1.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/rocket-turret-mk1/sprites/rocket-turret-shooting-2.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/rocket/mk1/sprites/rocket-turret-shooting-2.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/rocket-turret-mk1/sprites/rocket-turret-shooting-3.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/rocket/mk1/sprites/rocket-turret-shooting-3.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/rocket-turret-mk1/sprites/rocket-turret-shooting-4.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/rocket/mk1/sprites/rocket-turret-shooting-4.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					}
@@ -114,23 +114,23 @@ local function rocket_turret_attack(inputs)
 end
 
 -- Animation calls
-l_rocket_turret_mk1.folded_animation =
+e_rocket_turret_mk1.folded_animation =
 {
 	layers =
 	{
 		rocket_turret_extension { frame_count = 1, line_length = 1 },
 	}
 }
-l_rocket_turret_mk1.preparing_animation =
+e_rocket_turret_mk1.preparing_animation =
 {
 	layers =
 	{
 		rocket_turret_extension {},
 	}
 }
-l_rocket_turret_mk1.prepared_animation = rocket_turret_attack { frame_count = 1 }
-l_rocket_turret_mk1.attacking_animation = rocket_turret_attack {}
-l_rocket_turret_mk1.folding_animation =
+e_rocket_turret_mk1.prepared_animation = rocket_turret_attack { frame_count = 1 }
+e_rocket_turret_mk1.attacking_animation = rocket_turret_attack {}
+e_rocket_turret_mk1.folding_animation =
 {
 	layers =
 	{
@@ -151,30 +151,30 @@ local blank_layers =
 		}
 	}
 }
-l_rocket_turret_mk1.base_picture = blank_layers
+e_rocket_turret_mk1.base_picture = blank_layers
 
 --------------
 --- ATTACK ---
 --------------
 
 -- Takes this as base
-local l_base_gun_copy = util.table.deepcopy(data.raw["gun"]["rocket-launcher"])
-l_rocket_turret_mk1.attack_parameters = l_base_gun_copy.attack_parameters
+local s_base_gun_copy = table.deepcopy(data.raw["gun"]["rocket-launcher"])
+e_rocket_turret_mk1.attack_parameters = s_base_gun_copy.attack_parameters
 
 -- Range
-l_rocket_turret_mk1.attack_parameters.min_range = rocketTurretMk1.minRange -- Overwrite parameter
-l_rocket_turret_mk1.attack_parameters.range = rocketTurretMk1.range
+e_rocket_turret_mk1.attack_parameters.min_range = rocketTurretMk1.min_range -- Overwrite parameter
+e_rocket_turret_mk1.attack_parameters.range = rocketTurretMk1.range         -- Overwrite parameter
 
 -- Damage modifier
-l_rocket_turret_mk1.attack_parameters.damage_modifier = rocketTurretMk1.damageModifier
+e_rocket_turret_mk1.attack_parameters.damage_modifier = rocketTurretMk1.damage_modifier -- Overwrite parameter
 
 -- Cooldown
-l_rocket_turret_mk1.attack_parameters.cooldown = 60 / rocketTurretMk1.shootsPerSecond
+e_rocket_turret_mk1.attack_parameters.cooldown = rocketTurretMk1.cooldown  -- Overwrite parameter
 
-l_rocket_turret_mk1.attack_parameters.projectile_center = { -0.17, -0.75 } -- Overwrite parameter
+e_rocket_turret_mk1.attack_parameters.projectile_center = { -0.17, -0.75 } -- Overwrite parameter
 
 -- Write result
 data:extend
 ({
-	l_rocket_turret_mk1
+	e_rocket_turret_mk1
 })

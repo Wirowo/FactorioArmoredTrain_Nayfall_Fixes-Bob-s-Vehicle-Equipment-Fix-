@@ -9,13 +9,13 @@ data:extend
 	{
 		type = "item",
 		name = radarWagonMk1.name,
-		icon = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-icon.png",
+		icon = "__Armored-train_Nayfall_Fixes__/assets/platforms/radar/mk1/radar-platform-mk1-icon.png",
 		icon_size = 64,
 		icon_mipmaps = 4,
 		subgroup = "transport",
-		order = "a[train-system]-l[utility_mk1_00",
+		order = radarWagonMk1.order,
 		place_result = radarWagonMk1.name,
-		stack_size = radarWagonMk1.stackSize
+		stack_size = radarWagonMk1.stack_size
 	}
 })
 
@@ -39,35 +39,23 @@ data:extend
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_radar_wagon_mk1 = util.table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
+local e_radar_wagon_mk1 = table.deepcopy(data.raw["cargo-wagon"]["cargo-wagon"])
 
 -- Name
-l_radar_wagon_mk1.name = radarWagonMk1.name
-
--- Icon
-l_radar_wagon_mk1.icon = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-icon.png"
-l_radar_wagon_mk1.icon_size = 64
-l_radar_wagon_mk1.icon_mipmaps = 4
+e_radar_wagon_mk1.name = radarWagonMk1.name
 
 -- Inventory
-l_radar_wagon_mk1.inventory_size = radarWagonMk1.inventorySize
+e_radar_wagon_mk1.inventory_size = radarWagonMk1.inventory_size
 
 -- Mining
-l_radar_wagon_mk1.minable =
+e_radar_wagon_mk1.minable =
 {
 	mining_time = 0.5,
 	result = radarWagonMk1.name
 }
 
--- Hp
-l_radar_wagon_mk1.max_health = radarWagonMk1
-	.health -- Same as turret hp (Critical component or will be destroyed using old script)	
-
--- Wight
-l_radar_wagon_mk1.weight = radarWagonMk1.weight
-
 -- Animation
-l_radar_wagon_mk1.pictures =
+e_radar_wagon_mk1.pictures =
 {
 	layers =
 	{
@@ -83,10 +71,10 @@ l_radar_wagon_mk1.pictures =
 			shift = { 0.4, -1.25 },
 			filenames =
 			{
-				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-01.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-02.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-03.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/sprites/platform-mk1-04.png"
+				"__Armored-train_Nayfall_Fixes__/assets/platforms/mk1/sprites/platform-mk1-01.png",
+				"__Armored-train_Nayfall_Fixes__/assets/platforms/mk1/sprites/platform-mk1-02.png",
+				"__Armored-train_Nayfall_Fixes__/assets/platforms/mk1/sprites/platform-mk1-03.png",
+				"__Armored-train_Nayfall_Fixes__/assets/platforms/mk1/sprites/platform-mk1-04.png"
 			}
 		},
 		--DECORATIVES
@@ -104,36 +92,62 @@ l_radar_wagon_mk1.pictures =
 			scale = 0.675,
 			filenames =
 			{
-				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-01-fix.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-02-fix.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-03-fix.png",
-				"__Armored-train_Nayfall_Fixes__/assets/radar-mk1/sprites/radar-mk1-04-fix.png"
+				"__Armored-train_Nayfall_Fixes__/assets/turrets/radar/mk1/sprites/radar-mk1-01-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/turrets/radar/mk1/sprites/radar-mk1-02-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/turrets/radar/mk1/sprites/radar-mk1-03-fix.png",
+				"__Armored-train_Nayfall_Fixes__/assets/turrets/radar/mk1/sprites/radar-mk1-04-fix.png"
 			}
 		}
 	}
 }
-l_radar_wagon_mk1.horizontal_doors = nil
-l_radar_wagon_mk1.vertical_doors = nil
+e_radar_wagon_mk1.horizontal_doors = nil
+e_radar_wagon_mk1.vertical_doors = nil
 
 -- Minimap representation
-l_radar_wagon_mk1.minimap_representation =
+e_radar_wagon_mk1.minimap_representation =
 {
-	filename = "__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-minimap-representation.png",
+	filename = "__Armored-train_Nayfall_Fixes__/assets/platforms/radar/radar-platform-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
-l_radar_wagon_mk1.selected_minimap_representation =
+e_radar_wagon_mk1.selected_minimap_representation =
 {
 	filename =
-	"__Armored-train_Nayfall_Fixes__/assets/radar-platform-mk1/radar-platform-mk1-selected-minimap-representation.png",
+	"__Armored-train_Nayfall_Fixes__/assets/platforms/radar/radar-platform-selected-minimap-representation.png",
 	flags = { "icon" },
 	size = { 20, 40 },
 	scale = 0.5
 }
+
+---------------
+---- STATS ----
+---------------
+
+-- Hp
+e_radar_wagon_mk1.max_health = radarWagonMk1
+	.max_health -- Same as turret hp (Critical component or will be destroyed using old script)	
+
+-- Weight
+e_radar_wagon_mk1.weight = radarWagonMk1.weight
+
+-- Max speed
+e_radar_wagon_mk1.max_speed = radarWagonMk1.max_speed
+
+-- Braking force
+e_radar_wagon_mk1.braking_force = radarWagonMk1.braking_force
+
+-- Friction_force
+e_radar_wagon_mk1.friction_force = radarWagonMk1.friction_force
+
+-- Air resistance
+e_radar_wagon_mk1.air_resistance = radarWagonMk1.air_resistance
+
+-- Energy per hit point
+e_radar_wagon_mk1.energy_per_hit_point = radarWagonMk1.energy_per_hit_point
 
 -- Write result
 data:extend
 ({
-	l_radar_wagon_mk1
+	e_radar_wagon_mk1
 })

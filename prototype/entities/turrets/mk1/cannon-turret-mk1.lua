@@ -6,13 +6,13 @@ local cannonWagonMk1 = ArmoredTrain.mk1.wagons.cannonMk1
 --------------
 
 -- Deep copy base data and create new one with custom parametres
-local l_cannon_turret_mk1 = util.table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
+local e_cannon_turret_mk1 = table.deepcopy(data.raw["ammo-turret"]["gun-turret"])
 
 -- Name
-l_cannon_turret_mk1.name = cannonTurretMk1.name
+e_cannon_turret_mk1.name = cannonTurretMk1.name
 
 -- Flags
-l_cannon_turret_mk1.flags =
+e_cannon_turret_mk1.flags =
 {
 	"player-creation", -- Can draw enemies
 	"placeable-off-grid",
@@ -23,36 +23,36 @@ l_cannon_turret_mk1.flags =
 }
 
 -- Mining
-l_cannon_turret_mk1.minable = nil
+e_cannon_turret_mk1.minable = nil
 
 -- HP
-l_cannon_turret_mk1.max_health = cannonWagonMk1
-	.health -- Same as platform hp (Critical component or will be destroyed using old script)
+e_cannon_turret_mk1.max_health = cannonWagonMk1
+	.max_health -- Same as platform hp (Critical component or will be destroyed using old script)
 
 -- Resistance
-l_cannon_turret_mk1.resistances = cannonWagonMk1.resistances -- Prevent faster damage from turret
+e_cannon_turret_mk1.resistances = cannonWagonMk1.resistances -- Prevent faster damage from turret
 
 -- Collision
-l_cannon_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
-l_cannon_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
-l_cannon_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
+e_cannon_turret_mk1.collision_box = { { -1, -1 }, { 1, 1 } }
+e_cannon_turret_mk1.collision_mask = { "object-layer" } -- Fix player stuck inside wagon forever
+e_cannon_turret_mk1.selection_box = { { -1.25, -1.25 }, { 1.25, 1.25 } }
 
 -- Rotation speed
-local l_base_tank_copy_param = util.table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
-l_cannon_turret_mk1.rotation_speed = l_base_tank_copy_param
+local s_base_tank_copy_param = table.deepcopy(data.raw["car"]["tank"]["turret_rotation_speed"])
+e_cannon_turret_mk1.rotation_speed = s_base_tank_copy_param
 
 -- Inventory
-l_cannon_turret_mk1.inventory_size = 3
+e_cannon_turret_mk1.inventory_size = cannonTurretMk1.inventory_size
 
 -- Attack speed
-l_cannon_turret_mk1.attacking_speed = l_cannon_turret_mk1.attacking_speed / 2
+e_cannon_turret_mk1.attacking_speed = e_cannon_turret_mk1.attacking_speed / 2
 
 -- Animation functions
-l_cannon_turret_mk1.gun_animation_render_layer = "higher-object-under"
+e_cannon_turret_mk1.gun_animation_render_layer = "higher-object-under"
 local function cannon_turret_extension(inputs)
 	return
 	{
-		filename = "__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-raising.png",
+		filename = "__Armored-train_Nayfall_Fixes__/assets/turrets/cannon/mk1/sprites/cannon-turret-raising.png",
 		priority = "medium",
 		width = 179,
 		height = 132,
@@ -84,25 +84,25 @@ local function cannon_turret_attack(inputs)
 				{
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-1.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/cannon/mk1/sprites/cannon-turret-shooting-1.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-2.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/cannon/mk1/sprites/cannon-turret-shooting-2.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-3.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/cannon/mk1/sprites/cannon-turret-shooting-3.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					},
 					{
 						filename =
-						"__Armored-train_Nayfall_Fixes__/assets/cannon-turret-mk1/sprites/cannon-turret-shooting-4.png",
+						"__Armored-train_Nayfall_Fixes__/assets/turrets/cannon/mk1/sprites/cannon-turret-shooting-4.png",
 						width_in_frames = inputs.frame_count or 2,
 						height_in_frames = 16
 					}
@@ -114,23 +114,23 @@ local function cannon_turret_attack(inputs)
 end
 
 -- Animation calls
-l_cannon_turret_mk1.folded_animation =
+e_cannon_turret_mk1.folded_animation =
 {
 	layers =
 	{
 		cannon_turret_extension { frame_count = 1, line_length = 1 },
 	}
 }
-l_cannon_turret_mk1.preparing_animation =
+e_cannon_turret_mk1.preparing_animation =
 {
 	layers =
 	{
 		cannon_turret_extension {},
 	}
 }
-l_cannon_turret_mk1.prepared_animation = cannon_turret_attack { frame_count = 1 }
-l_cannon_turret_mk1.attacking_animation = cannon_turret_attack {}
-l_cannon_turret_mk1.folding_animation =
+e_cannon_turret_mk1.prepared_animation = cannon_turret_attack { frame_count = 1 }
+e_cannon_turret_mk1.attacking_animation = cannon_turret_attack {}
+e_cannon_turret_mk1.folding_animation =
 {
 	layers =
 	{
@@ -151,15 +151,15 @@ local blank_layers =
 		}
 	}
 }
-l_cannon_turret_mk1.base_picture = blank_layers
+e_cannon_turret_mk1.base_picture = blank_layers
 
 --------------
 --- ATTACK ---
 --------------
 
 -- Takes this as base
-local l_base_gun_copy = util.table.deepcopy(data.raw["gun"]["tank-cannon"])
-l_cannon_turret_mk1.attack_parameters = l_base_gun_copy.attack_parameters
+local s_base_gun_copy = table.deepcopy(data.raw["gun"]["tank-cannon"])
+e_cannon_turret_mk1.attack_parameters = s_base_gun_copy.attack_parameters
 
 -- Base projectile modification
 data.raw["projectile"]["cannon-projectile"].force_condition = "not-same"
@@ -168,19 +168,19 @@ data.raw["projectile"]["explosive-cannon-projectile"].force_condition = "not-sam
 data.raw["projectile"]["explosive-uranium-cannon-projectile"].force_condition = "not-same"
 
 -- Range
-l_cannon_turret_mk1.attack_parameters.min_range = cannonTurretMk1.minRange
-l_cannon_turret_mk1.attack_parameters.range = cannonTurretMk1.range
+e_cannon_turret_mk1.attack_parameters.min_range = cannonTurretMk1.min_range -- Overwrite parameter
+e_cannon_turret_mk1.attack_parameters.range = cannonTurretMk1.range         -- Overwrite parameter
 
 -- Damage modifier
-l_cannon_turret_mk1.attack_parameters.damage_modifier = cannonTurretMk1.damageModifier
+e_cannon_turret_mk1.attack_parameters.damage_modifier = cannonTurretMk1.damage_modifier -- Overwrite parameter
 
 -- Cooldown
-l_cannon_turret_mk1.attack_parameters.cooldown = 60 / cannonTurretMk1.shootsPerSecond
+e_cannon_turret_mk1.attack_parameters.cooldown = cannonTurretMk1.cooldown              -- Overwrite parameter
 
-l_cannon_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7.5 } -- Overwrite parameter
+e_cannon_turret_mk1.attack_parameters.projectile_center = { -0.15625, -0.07812 * 7.5 } -- Overwrite parameter
 
 -- Write result
 data:extend
 ({
-	l_cannon_turret_mk1
+	e_cannon_turret_mk1
 })

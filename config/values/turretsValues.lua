@@ -1,18 +1,65 @@
+local generateCannonTurretStats = function(tier)
+    local incrementalStats = {
+        name = "cannon-turret-mk" .. tier,
+        damage_modifier = 1.25 + (1.25 * (tier - 1)),
+        cooldown = 60 / (1 + (0.25 * (tier - 1))), -- Shoots per second
+    }
+    return incrementalStats
+end
+
+local generateFlamethrowerTurretStats = function(tier)
+    local incrementalStats = {
+        name = "flamethrower-turret-mk" .. tier,
+        damage_modifier = 1.25 + (1.25 * (tier - 1)),
+    }
+    return incrementalStats
+end
+
+local generateMinigunTurretStats = function(tier)
+    local incrementalStats = {
+        name = "minigun-turret-mk" .. tier,
+        damage_modifier = 1.25 + (1.25 * (tier - 1)),
+    }
+    return incrementalStats
+end
+
+local generateRocketTurretStats = function(tier)
+    local incrementalStats = {
+        name = "rocket-turret-mk" .. tier,
+        damage_modifier = 1.25 + (1.25 * (tier - 1)),
+        cooldown = 60 / (1.5 + (0.50 * (tier - 1))), -- Shoots per second
+    }
+    return incrementalStats
+end
+
+local generateRadarTurretStats = function(tier)
+    local incrementalStats = {
+        name = "radar-turret-mk" .. tier,
+        energy_usage = 100 + (50 * tier) .. "kW",
+        energy_per_sector = 3.5 + (1.5 * tier) .. "MJ",
+        max_distance_of_sector_revealed = 2 + (1 * tier),
+        energy_per_nearby_scan = 85 - (15 * tier) .. "kJ",
+        max_distance_of_nearby_sector_revealed = 1 + (0.5 * tier),
+    }
+    return incrementalStats
+end
+
 ------------------
 ---- TURRETS -----
 ------------------
+
+-- Is the same for all turrets
+local baseProperties = {
+    inventory_size = 3
+}
 
 -- MK1
 
 -- Cannon
 ArmoredTrain.mk1.turrets.cannonMk1 = {
-    name = "cannon-turret-mk1",
     utility = false,
-    damageModifier = nil,
-    shootsPerSecond = 1,
     range = 40,
-    minRange = 10,
-    inventorySize = 3,
+    min_range = 10,
     -- Takes this to craft the wagon
     recipe = {
         ingredients = {
@@ -25,15 +72,16 @@ ArmoredTrain.mk1.turrets.cannonMk1 = {
     }
 }
 
+-- Adds remaining stats
+table.deep_extend(ArmoredTrain.mk1.turrets.cannonMk1, baseProperties)
+table.deep_extend(ArmoredTrain.mk1.turrets.cannonMk1, generateCannonTurretStats(1)) -- Generates mk1 cannon turret stats
+
 -- Flamethrower
 ArmoredTrain.mk1.turrets.flamethrowerMk1 = {
-    name = "flamethrower-turret-mk1",
     utility = false,
-    damageModifier = nil,
-    shootsPerSecond = 60, -- Same as vanilla
-    range = 30,           -- Same as vanilla
-    minRange = 6,         -- Same as vanilla
-    inventorySize = 3,
+    cooldown = 60 / 60, -- Same as vanilla
+    range = 30,         -- Same as vanilla
+    min_range = 6,      -- Same as vanilla
     -- Takes this to craft the wagon
     recipe = {
         ingredients = {
@@ -46,14 +94,15 @@ ArmoredTrain.mk1.turrets.flamethrowerMk1 = {
     }
 }
 
+-- Adds remaining stats
+table.deep_extend(ArmoredTrain.mk1.turrets.flamethrowerMk1, baseProperties)
+table.deep_extend(ArmoredTrain.mk1.turrets.flamethrowerMk1, generateFlamethrowerTurretStats(1)) -- Generates mk1 flamethrower turret stats
+
 -- Minigun
 ArmoredTrain.mk1.turrets.minigunMk1 = {
-    name = "minigun-turret-mk1",
     utility = false,
-    damageModifier = nil,
-    shootsPerSecond = 10, -- Same as vanilla
+    cooldown = 60 / 10, -- Same as vanilla
     range = 35,
-    inventorySize = 3,
     -- Takes this to craft the wagon
     recipe = {
         ingredients = {
@@ -66,15 +115,15 @@ ArmoredTrain.mk1.turrets.minigunMk1 = {
     }
 }
 
+-- Adds remaining stats
+table.deep_extend(ArmoredTrain.mk1.turrets.minigunMk1, baseProperties)
+table.deep_extend(ArmoredTrain.mk1.turrets.minigunMk1, generateMinigunTurretStats(1)) -- Generates mk1 minigun turret stats
+
 -- Rocket
 ArmoredTrain.mk1.turrets.rocketMk1 = {
-    name = "rocket-turret-mk1",
     utility = false,
-    damageModifier = nil,
-    shootsPerSecond = 1.5,
     range = 50,
-    minRange = 20,
-    inventorySize = 3,
+    min_range = 20,
     -- Takes this to craft the wagon
     recipe = {
         ingredients = {
@@ -87,18 +136,16 @@ ArmoredTrain.mk1.turrets.rocketMk1 = {
     }
 }
 
+-- Adds remaining stats
+table.deep_extend(ArmoredTrain.mk1.turrets.rocketMk1, baseProperties)
+table.deep_extend(ArmoredTrain.mk1.turrets.rocketMk1, generateRocketTurretStats(1)) -- Generates mk1 rocket turret stats
+
 -- Radar
 ArmoredTrain.mk1.turrets.radarMk1 = {
-    name = "radar-turret-mk1",
     utility = true,
-    energyUsage = "100kW",
-    energyPerSector = "3.5MJ",
-    maxDistanceOfSector = 2,
-    energyPerNearbyScan = "85kJ",
-    maxDistanceOfNearbySector = 1,
     burner = {
         effectivity = 1,
-        fuelInventorySize = 3
+        fuel_inventory_size = baseProperties.inventory_size
     },
     -- Takes this to craft the wagon
     recipe = {
@@ -111,6 +158,9 @@ ArmoredTrain.mk1.turrets.radarMk1 = {
         }
     }
 }
+
+-- Adds remaining stats
+table.deep_extend(ArmoredTrain.mk1.turrets.radarMk1, generateRadarTurretStats(1)) -- Generates mk1 radar turret stats
 
 -- Adds all mk1 turrets to total turrets
 for _, turretMk1 in pairs(ArmoredTrain.mk1.turrets) do
