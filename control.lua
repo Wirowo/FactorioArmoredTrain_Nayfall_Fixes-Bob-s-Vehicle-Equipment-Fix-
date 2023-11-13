@@ -162,8 +162,8 @@ local function entityDamaged(event)
 			local entityNameId = event.entity.name .. event.entity.unit_number
 
 			for _, turretWagon in pairs(global.turretWagonList) do
-				-- Get turret name and unit number
-				if turretWagon.proxy.valid then
+				if turretWagon.proxy.valid and turretWagon.wagon.valid then
+					-- Get turret name and unit number
 					local turretNameId = turretWagon.proxy.name .. turretWagon.proxy.unit_number
 
 					-- The turret is the entity?
@@ -184,12 +184,15 @@ local function entityDamaged(event)
 							end
 						end
 
-						-- Checks if grid have vtk category and vtk health is avaible
-						if hasVtkArmorPlating and global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth then
-							vtkHealth = global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth
-							-- Otherwise clears vtk health
-						else
-							global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth = nil
+						if global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number] then
+							-- Checks if grid have vtk category and vtk health is avaible
+							if hasVtkArmorPlating and global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth then
+								vtkHealth = global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number]
+									.vtkHealth
+								-- Otherwise clears vtk health
+							else
+								global.turretWagonList[wagonEntity.name .. wagonEntity.unit_number].vtkHealth = nil
+							end
 						end
 
 						if damageTaken > 0 then

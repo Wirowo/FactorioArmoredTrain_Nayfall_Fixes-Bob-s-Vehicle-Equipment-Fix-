@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Info:
+	- Fixed a bug that causes the game to crash on entity damaged event
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Info:
 	- Changed locomotives, wagons and turrets stats to make them scalable with new tiers
