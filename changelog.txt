@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Info:
+	- Added different icon for armored transport wagons
+	- Added equipment compatibility with Rampant Arsenal
+	- Removed capability to equip roboports on armored fluid wagon when you have a compatible mod that adds equipable roboports on wagons
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.7
 Info:
 	- Fixed a bug that causes the game to crash on entity damaged event

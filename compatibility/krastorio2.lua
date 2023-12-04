@@ -1,5 +1,5 @@
 if mods["Krastorio2"] then
-    -- Adds krastorio2 fuel categories to all locomotives
+    -- Adds krastorio2 fuel category to all locomotives
     for _, locomotive in pairs(ArmoredTrain.total.locomotives) do
         if locomotive.name then
             Utils.addFuelCategory("locomotive", locomotive.name, "burner", "vehicle-fuel")
@@ -26,8 +26,11 @@ if mods["Krastorio2"] then
                     "universal-equipment",
                     "vehicle-equipment",
                 })
-                -- Else(Is utility)
-            else
+                -- Is fluid?
+            elseif string.find(grid.name, "fluid") then
+                Utils.addEquipmentCategory(grid.name, { "universal-equipment",
+                    "vehicle-equipment", })
+            else -- Else(Is utility)
                 Utils.addEquipmentCategory(grid.name, {
                     "universal-equipment",
                     "vehicle-equipment",

@@ -17,7 +17,7 @@ for _, wagon in pairs(ArmoredTrain.total.wagons) do
     if wagon.name then
         -- Get tier number
         local tier = tonumber(wagon.name:match("mk(%d+)"))
-        -- Is a turret wagon?
+        -- Is not a utility wagon?
         if not wagon.utility then
             Utils.changeGrid("cargo-wagon", wagon.name, ArmoredTrain.bases.grids.turretWagon .. tier .. "-grid")
         else
@@ -25,7 +25,7 @@ for _, wagon in pairs(ArmoredTrain.total.wagons) do
             if not string.find(wagon.name, "fluid") then
                 Utils.changeGrid("cargo-wagon", wagon.name, ArmoredTrain.bases.grids.utilityWagon .. tier .. "-grid")
             else
-                Utils.changeGrid("fluid-wagon", wagon.name, ArmoredTrain.bases.grids.utilityWagon .. tier .. "-grid")
+                Utils.changeGrid("fluid-wagon", wagon.name, ArmoredTrain.bases.grids.fluidWagon .. tier .. "-grid")
             end
         end
     end

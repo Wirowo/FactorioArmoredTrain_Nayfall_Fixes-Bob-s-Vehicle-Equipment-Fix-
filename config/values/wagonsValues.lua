@@ -69,6 +69,7 @@ local fluidWagonBaseProperties = {
 }
 
 -- Turret wagon Mk1
+-- For each turret generates respective wagon
 for key, turret in pairs(ArmoredTrain.mk1.turrets) do
     ArmoredTrain.mk1.wagons[key] = {
         name = turret.name:gsub("-turret%-", "-wagon-"),

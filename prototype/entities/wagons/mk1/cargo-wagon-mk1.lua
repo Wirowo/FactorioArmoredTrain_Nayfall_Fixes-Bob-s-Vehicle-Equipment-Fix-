@@ -4,24 +4,19 @@ local cargoWagonMk1 = ArmoredTrain.mk1.wagons.cargoMk1
 --- ITEM ---
 ------------
 
--- Deep copy base data and create new one with custom parametres
-local i_cargo_wagon_mk1 = table.deepcopy(data.raw["item-with-entity-data"]["cargo-wagon"])
-
--- Name
-i_cargo_wagon_mk1.name = cargoWagonMk1.name
-
--- Order
-i_cargo_wagon_mk1.order = cargoWagonMk1.order
-
--- Place result
-i_cargo_wagon_mk1.place_result = cargoWagonMk1.name
-
--- Stack size
-i_cargo_wagon_mk1.stack_size = cargoWagonMk1.stack_size
-
 data:extend
 ({
-    i_cargo_wagon_mk1
+    {
+        type = "item",
+        name = cargoWagonMk1.name,
+        icon = "__Armored-train_Nayfall_Fixes__/assets/platforms/mk1/platform-mk1-icon.png",
+        icon_size = 64,
+        icon_mipmaps = 4,
+        subgroup = "transport",
+        order = cargoWagonMk1.order,
+        place_result = cargoWagonMk1.name,
+        stack_size = cargoWagonMk1.stack_size
+    }
 })
 
 --------------

@@ -18,6 +18,7 @@ end
 -- Add grids base name to easy access
 ArmoredTrain.bases.grids.turretWagon = "turretWagonMk"
 ArmoredTrain.bases.grids.utilityWagon = "utilityWagonMk"
+ArmoredTrain.bases.grids.fluidWagon = "fluidWagonMk"
 
 -- Turret wagon mk1
 ArmoredTrain.grids.turretWagonMk1 = {
@@ -32,6 +33,15 @@ ArmoredTrain.grids.turretWagonMk1 = {
 ArmoredTrain.grids.utilityWagonMk1 = {
     type = "equipment-grid",
     name = ArmoredTrain.bases.grids.utilityWagon .. "1" .. "-grid",
+    width = 5,
+    height = 5,
+    equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
+}
+
+-- Fluid wagon mk1
+ArmoredTrain.grids.fluidWagonMk1 = {
+    type = "equipment-grid",
+    name = ArmoredTrain.bases.grids.fluidWagon .. "1" .. "-grid",
     width = 5,
     height = 5,
     equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }

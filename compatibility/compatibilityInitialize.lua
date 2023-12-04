@@ -1,5 +1,9 @@
--- Krastorio2
-require("krastorio2")
+local modsFiles = {
+    "krastorio2",
+    "rampantArsenal",
+    "vtkArmorPlating"
+}
 
--- Vtk armor plating
-require("vtk-armor-plating")
+for _, mod in pairs(modsFiles) do
+    require(mod)
+end
