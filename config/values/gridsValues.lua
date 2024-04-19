@@ -11,7 +11,7 @@ for key, locomotive in pairs(ArmoredTrain.total.locomotives) do
         name = locomotive.name .. "-grid",
         width = locomotive.grid.width,
         height = locomotive.grid.height,
-        equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
+        equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment", "vehicle-equipment" }
     }
 end
 
@@ -26,7 +26,7 @@ ArmoredTrain.grids.turretWagonMk1 = {
     name = ArmoredTrain.bases.grids.turretWagon .. "1" .. "-grid",
     width = 4,
     height = 4,
-    equipment_categories = { "defense-equipment", "energy-equipment" }
+    equipment_categories = { "defense-equipment", "energy-equipment", "vehicle-equipment" }
 }
 
 -- Utility wagon mk1
@@ -35,7 +35,7 @@ ArmoredTrain.grids.utilityWagonMk1 = {
     name = ArmoredTrain.bases.grids.utilityWagon .. "1" .. "-grid",
     width = 5,
     height = 5,
-    equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
+    equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment", "vehicle-equipment" }
 }
 
 -- Fluid wagon mk1
@@ -44,5 +44,5 @@ ArmoredTrain.grids.fluidWagonMk1 = {
     name = ArmoredTrain.bases.grids.fluidWagon .. "1" .. "-grid",
     width = 5,
     height = 5,
-    equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment" }
+    equipment_categories = { "attack-equipment", "defense-equipment", "energy-equipment", "vehicle-equipment" }
 }
